@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,.mui-content{background: #1C1B20;}
+			.mui-control-content {
+				min-height:800px;
+			}
+			.mui-table-view .mui-media-object {
+			    line-height: 42px;
+			    max-width: 180px;
+			    height: auto;
+			}
+			.mui-input-row label~input, .mui-input-row label~select, .mui-input-row label~textarea {
+			    padding-left: 22px;
+			}
+			.mui-input-row label {
+			    padding: 11px 15px 11px 0;
+			}
+			.mui-table-view{background: #424045;}
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+			     border-top:0; 
+			     border-bottom:0; 
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" style="color:#fff;">设置关卡</h1>
+		</header>
+		<div class="mui-content">
+		    <div id="slider" class="mui-slider">
+					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #1c1b20;color:#fff;">
+						<a class="mui-control-item" href="#item1mobile">
+							推荐
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							分类1
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							分类2
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							分类3
+						</a>
+					</div>
+					<!--滑动时底边效果-->
+					<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3"></div>
+					<div class="mui-slider-group">
+						<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+							<div id="scroll1" class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<ul class="mui-table-view">
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-media-object mui-pull-left" src="../img/title_1.png" style="width:180px;height:90px;">
+												<div class="mui-media-body">
+													<div class="mui-input-row mui-checkbox">
+														<label>杯水传情</label>
+														<input name="checkbox1" value="Item 3" type="checkbox" >
+													</div>
+													<p class='mui-ellipsis-2' style="margin-top:5px;">由参赛者赛者组队参加游戏，挑战关卡成功后，由该关卡的定点裁判进行扫码判定，给与时间奖励。按完成游戏的时间进行排位</p>
+												</div>
+											</a>
+										</li>
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-media-object mui-pull-left" src="../img/title_1.png" style="width:180px;height:90px;">
+												<div class="mui-media-body">
+													<div class="mui-input-row mui-checkbox">
+														<label>杯水传情</label>
+														<input name="checkbox1" value="Item 3" type="checkbox" >
+													</div>
+													<p class='mui-ellipsis-2' style="margin-top:5px;">由参赛者赛者组队参加游戏，挑战关卡成功后，由该关卡的定点裁判进行扫码判定，给与时间奖励。按完成游戏的时间进行排位</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="item2mobile" class="mui-slider-item mui-control-content">
+							<div id="scroll2" class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<!--<div class="mui-loading">
+										<div class="mui-spinner">
+										</div>
+									</div>-->
+									<ul class="mui-table-view">
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-media-object mui-pull-left" src="../img/title_1.png" style="width:180px;height:90px;">
+												<div class="mui-media-body">
+													<div class="mui-input-row mui-checkbox">
+														<label>杯水传情</label>
+														<input name="checkbox1" value="Item 3" type="checkbox" >
+													</div>
+													<p class='mui-ellipsis-2' style="margin-top:5px;">由参赛者赛者组队参加游戏，挑战关卡成功后，由该关卡的定点裁判进行扫码判定，给与时间奖励。按完成游戏的时间进行排位</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="item3mobile" class="mui-slider-item mui-control-content">
+							<div id="scroll2" class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<!--<div class="mui-loading">
+										<div class="mui-spinner">
+										</div>
+									</div>-->
+									<ul class="mui-table-view">
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-media-object mui-pull-left" src="../img/title_1.png" style="width:180px;height:90px;">
+												<div class="mui-media-body">
+													<div class="mui-input-row mui-checkbox">
+														<label>杯水传情</label>
+														<input name="checkbox1" value="Item 3" type="checkbox" >
+													</div>
+													<p class='mui-ellipsis-2' style="margin-top:5px;">由参赛者赛者组队参加游戏，挑战关卡成功后，由该关卡的定点裁判进行扫码判定，给与时间奖励。按完成游戏的时间进行排位</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="item4mobile" class="mui-slider-item mui-control-content">
+							<div id="scroll2" class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<!--<div class="mui-loading">
+										<div class="mui-spinner">
+										</div>
+									</div>-->
+									<ul class="mui-table-view">
+										<li class="mui-table-view-cell mui-media">
+											<a href="javascript:;">
+												<img class="mui-media-object mui-pull-left" src="../img/title_1.png" style="width:180px;height:90px;">
+												<div class="mui-media-body">
+													<div class="mui-input-row mui-checkbox">
+														<label>杯水传情</label>
+														<input name="checkbox1" value="Item 3" type="checkbox" >
+													</div>
+													<p class='mui-ellipsis-2' style="margin-top:5px;">由参赛者赛者组队参加游戏，挑战关卡成功后，由该关卡的定点裁判进行扫码判定，给与时间奖励。按完成游戏的时间进行排位</p>
+												</div>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+				var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
+				$('.mui-input-group').on('change', 'input', function() {
+					if (this.checked) {
+						sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
+						//force repaint
+						sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
+					}
+				});
+			})(mui);
+		</script>
+	</body>
+
+</html>

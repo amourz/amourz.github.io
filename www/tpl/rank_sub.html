@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				color: #fff;
+				background-color: #000;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			
+			.mui-table-view-cell {
+				text-align:center;
+				height: 35px;
+			}
+			.mui-table-view-cell.mui-active {
+				background-color: transparent;
+			}
+			
+			.mui-table-view-cell>a:not{.mui-btn}.mui-active{background: transparent;}
+			
+			.pic {
+				width: 100%;
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+			
+			.progress_new {
+				color: #1191d0;
+				font-size: 1.1rem;
+				font-weight: bold;
+				text-align: center;
+				margin-top: -6px;
+				padding-top: 15px;
+			}
+			
+			.name {
+				display: inline-block;
+				font-size: 14px;
+				color: #000;
+			}
+			
+			.finish {
+				color: #696969;
+				font-size: 14px;
+			}
+			
+			.lefttime {
+				margin-right: 10px;
+				color: #a9a9a9;
+				font-size: 14px;
+			}
+			.flag {
+				display: block;
+				width: 20px;
+				height: 15px;
+				border: 1px solid #fff;
+				float: left;
+			}
+			
+			.rangename {
+				text-align: left;
+				padding-left:10px;
+				display: block;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:#030f25;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">战绩排行榜</h1>
+			<a class="mui-pull-right"></a>
+		</header>
+				<div id="pullrefresh" class="mui-content  mui-scroll-wrapper" style="overflow: visible;">
+			<div class="mui-scroll">
+			<div class="mui-row" id="board">
+
+			</div>
+			<img src="../img/progress_pic.png" class="pic" />
+			<div style="height:auto;background-color:#d9f7ff;">
+				<div class="progress_new">
+					<span>-</span><span>全部动态</span><span>-</span>
+				</div>
+				<ul style="margin-top:5px;margin-bottom:-20px;margin-left:-30px;" id="log">
+				
+				</ul>
+			</div>
+		</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+			var id=app.get('id');
+			if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+			mui.init({
+							swipeBack: true,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */function pulldownRefresh() {
+
+	setTimeout(function() {
+				init();
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+			
+
+			function init() {
+				var url = host + 'timedriver/event.php';
+				var html = '<div class=\"mui-col-sm-2 mui-col-xs-2\"><li class=\"mui-table-view-cell\" style=\"padding-left:9px;\">名次</li></div>';
+				html += '<div class=\"mui-col-sm-6 mui-col-xs-6\"><li class=\"mui-table-view-cell\" style=\"text-align:left;padding-left:0;\">战队</li></div>';
+				html += '<div class=\"mui-col-sm-4 mui-col-xs-4\"><li class=\"mui-table-view-cell\">剩余时间</li></div>';
+				app.ajax.post(url, {
+					'act': 'rank',
+					'id':id
+				}, function(rs) {
+					console.log(JSON.stringify(rs));
+					var j = 0;
+					
+					var duration = rs.duration;
+					for(var i = 0; i < rs.rank.length; i++) {
+						j = i + 1;
+						var p=j;
+						if(j<4){
+							p='<img src=../img/medal_'+j+'.png style=\"margin-top:-6px;\">';
+						}
+						html += '<div class=\"mui-col-sm-2 mui-col-xs-2\"><li class=\"mui-table-view-cell\">' + p + '</li></div>';
+						html += '<div class=\"mui-col-sm-6 mui-col-xs-6\"><li class=\"mui-table-view-cell\" style=\"padding-left:2px;\"><span class=\"flag\" style=\"background:'+rs.rank[i].color+'\"></span><span class=\"rangename\">' + rs.rank[i].name + '</span></li></div>';
+						var remain = formatSeconds(parseInt(duration) + parseInt(rs.rank[i].addtion));
+						html += '<div class=\"mui-col-sm-4 mui-col-xs-4\"><li class=\"mui-table-view-cell\">' + remain + '</li></div>';
+					}
+					document.querySelector('#board').innerHTML = html;
+					html='';
+					for(var i = 0; i < rs.logs.length; i++) {
+						    var newDate = new Date(rs.logs[i].date * 1000);
+							rs.logs[i].date = newDate.getHours() + ':' + newDate.getMinutes();
+						html +='<li><span class=\"mui-pull-left lefttime\">'+rs.logs[i].date+'</span><span class=\"name\" style=\"color:'+rs.logs[i].color+'\">'+rs.logs[i].name+'</span><span class=\"finish\">'+rs.logs[i].event+'</span></li>';
+					}
+					document.querySelector('#log').innerHTML = html;
+				});
+
+			}
+
+			function formatSeconds(value) {
+				var theTime = parseInt(value); // 秒 
+				var theTime1 = 0; // 分 
+				var theTime2 = 0; // 小时 
+				// alert(theTime); 
+				if(theTime > 60) {
+					theTime1 = parseInt(theTime / 60);
+					theTime = parseInt(theTime % 60);
+					// alert(theTime1+"-"+theTime); 
+					if(theTime1 > 60) {
+						theTime2 = parseInt(theTime1 / 60);
+						theTime1 = parseInt(theTime1 % 60);
+					}
+				}
+				thetime=(parseInt(theTime)<10)?"0"+parseInt(theTime):"" + parseInt(theTime);
+				var result = thetime + "''";
+				if(theTime1 > 0) {
+					thetime1=(parseInt(theTime1)<10)?"0"+parseInt(theTime1):"" + parseInt(theTime1);
+					result = "" + thetime1 + "'" + result;
+				}
+				if(theTime2 > 0) {
+					thetime2=(parseInt(theTime2)<10)?"0"+parseInt(theTime2):"" + parseInt(theTime2);
+					result = "" + thetime2+ ":" + result;
+				}
+				return result;
+			}
+		</script>
+	</body>
+
+</html>

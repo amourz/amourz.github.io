@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.guidon {
+				width: 40%;
+				height: 70px;
+				border: 1px solid #fff;
+				margin: 20px 0 0 20px;
+				float: left;
+				text-align: center;
+				line-height: 70px;
+				color: #fff;
+				font-size: 1rem;
+				font-weight: block;
+			}
+			
+			.btn {
+				width: 80%;
+				margin-top: 30%;
+				padding: 10px;
+				font-size: 1.1rem;
+				background: #1c3247;
+				opacity: 0.6;
+				border-radius: 0;
+				color: #fff;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:#030f25;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">加入战队</h1>
+			<a class="mui-pull-right"></a>
+		</header>
+
+		<div class="mui-content">
+			<div class="ranks" id="teams" style="width:90%;height:auto;margin:0 auto;">
+
+			</div>
+			<!--<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-outlined btn">确&nbsp;&nbsp;&nbsp;&nbsp;认</button>
+			</div> -->
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+		var id=app.get('id');
+		    if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+			mui.init({
+				swipeBack: true
+			});
+
+
+					mui('body').on('tap', '.link', function(e) {
+					var teamid = this.getAttribute('data-id');
+					var name = this.getAttribute('data-value');
+					var btnArray = ['否', '是'];
+					mui.confirm('确定要加入"' + name + '"战队吗？', '新零售之战', btnArray, function(e) {
+						if(e.index == 1) {
+							var url = host + 'timedriver/event.php';
+							app.ajax.post(url, {
+								'act': 'join',
+								'teamid': teamid,
+								'binding': plus.device.uuid
+							}, function(rs) {
+
+								if(rs) {
+									app.toast('恭喜您成为"' + name + '"战队的一员');
+									var uuid = plus.device.uuid;
+									plus.storage.setItem('uuid', uuid);
+									plus.storage.setItem('instance',id);
+									var mainWV = plus.webview.create('main.html?id='+id, 'main');
+									plus.webview.show(mainWV);
+								}
+							});
+						}
+					})
+
+				});		
+
+			function init() {
+				var url = host + 'timedriver/event.php';
+				app.ajax.post(url, {
+					'act': 'team_existed',
+					'id':id
+				}, function(rs) {
+					//alert(JSON.stringify(rs));
+					if(rs) {
+						var html = '';
+						for(var i = 0; i < rs.length; i++) {
+							html += '<div class=\"guidon link\" data-id=\"' + rs[i].teamid + '\" data-value=\"' + rs[i].name + '\" style=\"background:' + rs[i].color + ';\">' + rs[i].name + '</div>';
+						}
+						document.querySelector('#teams').innerHTML = html;
+					} else {
+						document.querySelector('#teams').innerHTML = '尚未有战队呢';
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

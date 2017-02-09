@@ -1,0 +1,375 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/csshake.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				color: #fff;
+				background-color: #000;
+			}
+			
+			.gamename {
+				width: 70px;
+				height: 70px;
+				font-size: 12px;
+				text-align: center;
+				background: url(../img/ring1.png) no-repeat;
+			}
+			
+			.fire {
+				width: 20px;
+				height: 20px;
+				margin-top: 10px;
+			}
+			
+			.name {
+				display: inline-block;
+				color: #79f7f7;
+			}
+			
+			.news {
+				width: 100%;
+				overflow: hidden;
+				margin-top: 120px;
+				position: fixed;
+			}
+			
+			.state {
+				background: url(../img/shape.png) no-repeat;
+				height: 30px;
+			}
+			
+			.active {
+				width: 100%;
+				height: 140px;
+				color: #fff;
+			}
+			
+			.active ul {
+				padding: 0;
+			}
+			
+			.active ul li {
+				list-style: none;
+				margin-left: 5px;
+				padding-right: 5px;
+				height: auto;
+				width: 100%;
+				line-height: 20px;
+				font-size: 14px;
+			}
+			/*需添加的css*/
+			
+			.class0 {
+				margin: 10px 0 0 10px;
+			}
+			
+			.class1 {
+				margin: -70px 0 0 120px;
+			}
+			
+			.class2 {
+				margin: 20px 0 0 -75px;
+			}
+			
+			.class3 {
+				margin: -70px 0 0 205px;
+			}
+			
+			.class4 {
+				margin: -80px 0 0 -75px;
+			}
+			/*时间的投入*/
+			
+			.class5 {
+				margin: 20px 0 0 0px;
+			}
+			
+			.class6 {
+				margin: -70px 0 0 130px;
+			}
+			
+			.class7 {
+				margin: -160px 0 0 205px;
+			}
+			
+			.animated {
+				color: #fff;
+				font-size: 12px;
+				-webkit-animation-duration: 1s;
+				-webkit-animation-play-state: paused;
+				-webkit-animation-fill-mode: both;
+			}
+			
+			.bounceInDown {
+				margin-top: -80px;
+				-webkit-animation-name: bounceInDown;
+				-webkit-animation-play-state: running;
+				/*-webkit-animation-delay: 1s;*/
+				display: block;
+			}
+			
+			.bounceInLeft {
+				-webkit-animation-name: bounceInLeft;
+				-webkit-animation-play-state: running;
+				display: block;
+			}
+			
+			.bounceInRight {
+				-webkit-animation-name: bounceInRight;
+				-webkit-animation-play-state: running;
+				display: block;
+			}
+			
+			@-webkit-keyframes bounceInDown {
+				0%,
+				60%,
+				75%,
+				90%,
+				100% {
+					-webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+					animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+				}
+				0% {
+					opacity: 0;
+					-webkit-transform: translate3d(-3000, 0, 0);
+					transform: translate3d(-3000, 0, 0);
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate3d(25px, 0, 0);
+					transform: translate3d(25px, 0, 0);
+				}
+				75% {
+					-webkit-transform: translate3d(-10px, 0, 0);
+					transform: translate3d(-10px, 0, 0);
+				}
+				90% {
+					-webkit-transform: translate(5px, 0, 0);
+					transform: translate3d(5px, 0, 0);
+				}
+				100% {
+					-webkit-transform: none;
+					transform: none;
+				}
+			}
+			
+			ul.countdown {
+				list-style: none;
+				margin: -10px 0 10px 0;
+				padding: 0;
+				display: block;
+				text-align: center;
+			}
+			
+			ul.countdown li {
+				display: inline-block;
+			}
+			
+			ul.countdown li span {
+				font-size: 40px;
+				font-weight: 300;
+				line-height: 40px;
+			}
+			
+			ul.countdown li.seperator {
+				font-size: 50px;
+				line-height: 40px;
+				vertical-align: top;
+			}
+			
+			ul.countdown li p {
+				color: #a7abb1;
+				font-size: 14px;
+			}
+			
+			.flag {
+				display: inline-block;
+				width: 30px;
+				height: 20px;
+				margin-right: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:transparent;">
+			<a class="mui-pull-left link" data-url="rank.html" style="width:80px;text-align:center;font-size:1rem;line-height:44px;color:#fff;margin-left: -10px;">排行榜</a>
+
+			<h1 class="mui-title" style="color:#fff;margin-left:40px;margin-right:40px;" id="title"></h1>
+
+			<a class="mui-pull-right link" data-url="myteam.html" style="font-size:1rem;line-height:44px;color:#fff;">我的战队</a>
+
+		</header>
+		<div id="pullrefresh" class="mui-content  mui-scroll-wrapper" style="overflow: visible;">
+			<div class="mui-scroll">
+
+				<div style="width:200px;margin:0 auto;" id="chapters">
+				</div>
+
+				<div id="status" class="mui-bar mui-bar-tab mui-hidden" style="position:relative;box-shadow: 0 0 1px transparent;overflow:hidden;margin-top:32%;background: transparent;">
+					<div class="state">
+						<div style="color:#0097e8;padding-top:5px;padding-left:5px;">最新动态</div>
+					</div>
+					<div class="active">
+						<ul id="log">
+
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/jquery.min.js"></script>
+		<script src="../js/jquery.downCount.js"></script>
+		<script type="text/javascript">
+			var first;
+			var id = app.get('id');
+			if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					}
+				}
+			});
+ 
+			function pulldownRefresh() {
+
+				setTimeout(function() {
+					initPage();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+
+			function init() {
+				//alert(plus.push.getClientInfo().clientid);
+				plus.navigator.closeSplashscreen();
+				plus.navigator.setFullscreen(false);
+				initPage();
+
+			}
+
+			mui('body').on('tap', '.link', function() {
+				var wvid = this.getAttribute('data-url');
+				var url = this.getAttribute('data-url') + '?id=' + id;
+				//alert(url);
+				mui.openWindow({
+					url: url,
+					id: wvid
+				});
+
+			});
+
+			function initPage() {
+				var url = host + 'timedriver/event.php';
+
+				app.ajax.post(url, {
+					'act': 'chapter',
+					'id': id,
+					'binding': plus.device.uuid
+				}, function(rs) {
+					//alert(JSON.stringify(rs));
+					if(rs) {
+						document.querySelector('#title').innerHTML = rs.instance.name;
+						var html = '';
+						var timestamp = parseInt(new Date().getTime());
+						//console.log(timestamp);
+						var diff = (rs.remain * 1000) - timestamp;
+						//console.log(diff);
+						for(var i = 0; i < rs.chapter.length; i++) {
+
+							if(i == 4) {
+								if(rs.start < 0) {
+									html += '<div style=\"width:180px;font-size:28px;text-align:center;margin:-50px auto 60px auto;height:20px;\"><span class=\"flag\" style=\"background:' + rs.team.color + '\"></span>' + rs.team.name + '</div>';
+									html += '<ul class=\"countdown\">';
+									html += '<li style=\"height:80px;\"> <span class=\"hours\" style=\"color:#f00;font-size:36px;\">尚未开始</span></li></ul>';
+
+								} else if(diff <= 0) {
+									html += '<div style=\"width:180px;font-size:28px;text-align:center;margin:-50px auto 60px auto;height:20px;\"><span class=\"flag\" style=\"background:' + rs.team.color + '\"></span>' + rs.team.name + '</div>';
+									html += '<ul class=\"countdown\">';
+									html += '<li style=\"height:80px;\"> <span class=\"hours shake-chunk shake-constant\" style=\"color:#f00;font-size:36px;\">Time Out</span></li></ul>';
+								} else {
+									html += '<div style=\"width:190px;font-size:28px;text-align:center;color:#fc2626;margin:-60px auto 10px auto;\"><span class=\"flag\" style=\"background:' + rs.team.color + '\"></span>' + rs.team.name + '</div>';
+									html += '<div style=\"font-size:16px;text-align:center;margin:0 auto 20px auto;height:20px;color:#ccc;\">还剩</div>';
+									html += '<ul class=\"countdown\">';
+									html += '<li> <span class=\"hours\">&nbsp</span>';
+									html += '</li>';
+									html += '<li>小时</li>';
+									html += '<li> <span class=\"minutes\">&nbsp</span>';
+									html += '</li>';
+									html += '<li>分</li>';
+									html += '<li style=\"margin-left:-20px;padding-top:10px;\"> <span class=\"seconds\">&nbsp</span>';
+									html += '</li>';
+									html += '<li>秒</li>';
+									html += '<li style=\"width:65px;padding-left:10px;\"> <span class=\"msecs\" style=\"font-size:34px;\">&nbsp</span>';
+									html += '</li></ul>';
+								}
+							}
+							//alert(rs.chapter[i].id);
+							//html+='<div class=\"gourl\" data-url=\"chapter.html?chapterid='+rs.chapter[i].id+'\">' +rs.chapter[i].name +'</div>';
+							//html += '<div class=\"animated bounceInDown\">';
+							html += '<div class=\"gamename link class' + i + '\"  data-url=\"chapter.html?chapterid=' + rs.chapter[i].id + '\">';
+							var pic = (rs.chapter[i].status == 1) ? 'bluefire.png' : 'fire.png';
+							html += '<img src=\"../img/' + pic + '\" class=\"fire\"/>';
+							html += '<div style=\"margin-top:-7px;\">' + rs.chapter[i].name + '</div></div>';
+							//console.log(i+':'+rs[i].name)	;
+						}
+						//console.log(html);
+						document.querySelector('#chapters').innerHTML = html;
+						var newDate = new Date(rs.remain * 1000);
+						var remain = (newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' + newDate.getFullYear() + ' ' + newDate.getHours() + ':' + newDate.getMinutes() + ':' + newDate.getSeconds();
+
+						if(rs.start >= 0 && diff > 0) {
+							$('.countdown').downCount({
+								date: remain,
+								offset: +8
+							}, function() {
+								//alert('倒计时结束!');
+							});
+						}
+						html = '';
+						for(var i = 0; i < rs.log.length; i++) {
+							var newDate = new Date(rs.log[i].date * 1000);
+							rs.log[i].date = newDate.getHours() + ':' + newDate.getMinutes();
+							html += '<li><span class=\"name\">' + rs.log[i].date + '</span> <span style=\"color:' + rs.log[i].color + '\">' + rs.log[i].name + '</span> ' + rs.log[i].event + '</li>';
+						}
+						document.querySelector('#log').innerHTML = html;
+					};
+
+					document.querySelector('#status').classList.remove('mui-hidden');
+
+				});
+			}
+
+			// 自定义事件监听
+			window.addEventListener('fade', function(event) {
+
+				var teamid = event.detail.teamid;
+
+				//alert(teamid);
+			});
+		</script>
+
+	</body>
+
+</html>

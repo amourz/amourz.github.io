@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				color: #fff;
+				background-color: #000;
+			}
+			
+			.mui-card-footer:before {
+				background-color: transparent;
+			}
+			
+			.mui-card-footer p {
+				width: 80%;
+				height: auto;
+				margin: 0 auto;
+				font-size: 16px;
+				color: #000;
+			}
+			
+			p {
+				width: 100%;
+				margin: 0 auto;
+				color: #fff;
+				font-size: 20px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			
+			span {
+				color: #7ed3f6;
+				font-size: 24px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;" id="header">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">等待裁定成绩</h1>
+		</header>
+		<div class="mui-content" id="content">
+			<div class="mui-card" style="padding-top:5%;margin-top:60px;text-align: center;">
+				<div class="mui-card-content">
+					<div id="qrcode" style="width:250px; height:250px;margin:0 auto;"></div>
+				</div>
+				<div class="mui-card-footer ">
+					<p>请向裁判出示此二维码获得成绩</p>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js "></script>
+	<script src="html5plus://ready"></script>	
+	<script src="../js/common.js "></script>
+	<script src="../js/qrcode.min.js "></script>
+	<script type="text/javascript " charset="utf-8 ">
+			mui.init({
+				swipeBack: true
+			});
+		var s = 0;
+		if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+		function init() {
+			//plus.screen.setBrightness(1);
+			//plus.device.setWakelock(true);
+			var teamid = app.get('teamid');
+			var chapterid = app.get('chapterid');
+			var instance_id = app.get('instance_id');
+			
+			var cid = plus.push.getClientInfo().clientid;
+			var txt = teamid + '&' + chapterid + '&' + cid+ '&' + instance_id;
+
+			var qrcode = new QRCode(document.getElementById("qrcode"), {
+				text: txt,
+				width: 250,
+				height: 250,
+				colorDark: "#000",
+				colorLight: "#fff",
+				correctLevel: QRCode.CorrectLevel.H
+			});
+
+			
+
+			mui('body').on('tap', '#finish', function() {
+				var self = plus.webview.currentWebview();
+				var parent = self.opener();
+				var main = parent.opener();
+				plus.webview.close(parent);
+				plus.webview.close(self);
+				main.reload();
+
+			});
+
+			// 监听在线消息事件
+			plus.push.addEventListener("receive", function(msg) {
+				//alert(JSON.stringify(msg));
+				if(msg.payload) {
+					if(typeof(msg.payload) == "string") {
+
+						var payload = JSON.parse(msg.payload);
+						var status = payload.status;
+						var count = payload.count;
+						var score = payload.score;
+
+					} else {
+
+						var status = msg.payload.status;
+
+						var count = msg.payload.count;
+						var score = msg.payload.score;
+
+					}
+					var min = parseInt(count / 60);
+					var sec = count % 60;
+					count = min.toString() + '分' + sec.toString() + '秒';
+					score = parseInt(score) / 60;
+					var html = '';
+					html += '<h1 class=\"mui-title\" style=\"color:#fff;\">挑战结果</h1>';
+					html += '<button class=\"mui-icon mui-pull-right\" id=\"finish\" style=\"background:transparent;border:0;color:#fff;font-size: 1rem;line-height: 30px;\">完成</button>';
+					document.querySelector('#header').innerHTML = html;
+					var html = '';
+					if(status == 1) {
+						html += '<div style=\"width:60px;margin:30px auto;\"><img src=\"../img/success.png\" style=\"height:60px;\"/></div>';
+						html += '<p>恭喜挑战<span></span>成功</p>';
+						html += '<p>共用时<span>' + count + '</span>&nbsp;获得<span>' + score + '</span>分钟加时</p>';
+
+					} else {
+						html += '<div style=\"width:60px;margin:30px auto;\"><img src=\"../img/fail.png\" style=\"height:60px;\"/></div>';
+						html += '<p>挑战<span></span>失败了，再来一次吧</p>';
+
+					}
+					document.querySelector('#content').innerHTML = html;
+					s = 1;
+				} else {
+					//alert( "payload: undefined" );
+				}
+				if(s == 1) {
+					mui.back = function() {}
+				}
+			}, false);
+
+		}
+	</script>
+
+</html>

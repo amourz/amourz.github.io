@@ -1,0 +1,550 @@
+{
+  "index.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/tpl/main_sub.html",
+      "www/fonts/mui.ttf",
+      "list.html",
+      "www/tpl/main.html"
+    ],
+    "refer": [
+      "main.html",
+      "welcome.html",
+      "www/tpl/welcome.html",
+      "www/tpl/main.html",
+      "www/tpl/main_sub.html",
+      "list.html"
+    ]
+  },
+  "www/tpl/welcome.html": {
+    "resources": [
+      "www/img/title.png",
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf",
+      "www/img/cover.jpg"
+    ],
+    "refer": [
+      "www/tpl/create.html",
+      "www/tpl/join.html",
+      "www/tpl/coach.html",
+      "www/tpl/verify.html",
+      "www/tpl/home.html",
+      "www/tpl/new.html",
+      "www/tpl/template.html"
+    ]
+  },
+  "www/tpl/create.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf",
+      "www/img/bg.jpg",
+      "www/js/common.js"
+    ],
+    "refer": [
+      "www/tpl/main.html"
+    ]
+  },
+  "www/tpl/main.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/jquery.knob.js",
+      "www/js/jquery.ccountdown.js",
+      "www/js/jquery.min.js",
+      "www/js/init.js",
+      "www/img/bg.jpg",
+      "www/fonts/mui.ttf",
+      "www/js/time_js.js",
+      "www/img/ring1.png",
+      "www/img/fire.png",
+      "www/img/shape.png",
+      "www/js/common.js",
+      "www/js/jquery.downCount.js",
+      "www/tpl/main_sub.html"
+    ],
+    "refer": [
+      "www/tpl/chapter.html",
+      "www/tpl/progress.html",
+      "www/tpl/main_sub.html"
+    ]
+  },
+  "www/tpl/chapter.html": {
+    "resources": [
+      "www/img/guize.png",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/img/bg.jpg",
+      "www/fonts/mui.ttf",
+      "www/js/common.js"
+    ],
+    "refer": [
+      "www/tpl/main.html",
+      "www/tpl/done.html"
+    ]
+  },
+  "www/tpl/progress.html": {
+    "resources": [
+      "www/img/yellow.jpg",
+      "www/img/bg.jpg",
+      "www/img/purple.jpg",
+      "www/css/mui.min.css",
+      "www/img/green.jpg",
+      "www/img/lightred.jpg",
+      "www/img/orange.jpg",
+      "www/img/red.jpg",
+      "www/img/progress_pic.png",
+      "www/img/lightblue.jpg",
+      "www/js/mui.min.js",
+      "www/img/blue.jpg",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "www/tpl/join.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf",
+      "www/img/bg.jpg"
+    ],
+    "refer": [
+      "www/tpl/main.html"
+    ]
+  },
+  "www/tpl/done.html": {
+    "resources": [
+      "www/js/qrcode.min.js",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/js/jquery.min.js",
+      "www/fonts/mui.ttf",
+      "www/img/bg.jpg"
+    ],
+    "refer": []
+  },
+  "www/tpl/judge.html": {
+    "resources": [
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": [
+      "www/tpl/coach.html",
+      "www/tpl/result.html",
+      "www/tpl/result_fail.html"
+    ]
+  },
+  "www/tpl/coach.html": {
+    "resources": [
+      "www/img/title.png",
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js"
+    ],
+    "refer": [
+      "www/tpl/judge.html",
+      "www/tpl/rules.html"
+    ]
+  },
+  "www/tpl/result.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/bg.jpg",
+      "www/js/mui.picker.min.js",
+      "www/css/mui.picker.css",
+      "www/css/mui.poppicker.css",
+      "www/js/mui.poppicker.js",
+      "www/js/mui.picker.js",
+      "www/js/time.data.js"
+    ],
+    "refer": [
+      "www/tpl/coach.html"
+    ]
+  },
+  "www/tpl/result_fail.html": {
+    "resources": [
+      "www/css/mui.picker.css",
+      "www/css/mui.poppicker.css",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/bg.jpg"
+    ],
+    "refer": []
+  },
+  "www/tpl/main_sub.html": {
+    "resources": [
+      "www/img/ring1.png",
+      "www/img/bg.jpg",
+      "www/js/jquery.min.js",
+      "www/img/fire.png",
+      "www/img/shape.png",
+      "www/js/jquery.downCount.js",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/bluefire.png",
+      "www/css/csshake.min.css"
+    ],
+    "refer": [
+      "www/tpl/chapter.html",
+      "www/tpl/rank.html",
+      "www/tpl/myteam.html",
+      "www/tpl/myteam_sub.html"
+    ]
+  },
+  "list.html": {
+    "refer": [
+      "www/tpl/main.html",
+      "www/tpl/welcome.html",
+      "www/tpl/home.html",
+      "www/tpl/coach.html",
+      "www/tpl/instance.html"
+    ],
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css"
+    ]
+  },
+  "www/tpl/rules.html": {
+    "resources": [
+      "www/img/guize.png",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf",
+      "www/img/bg.jpg"
+    ],
+    "refer": []
+  },
+  "www/tpl/rank.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/tpl/rank_sub.html",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": [
+      "www/tpl/rank_sub.html"
+    ]
+  },
+  "www/tpl/rank_sub.html": {
+    "resources": [
+      "www/img/red.jpg",
+      "www/img/progress_pic.png",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf",
+      "www/img/bg.jpg",
+      "www/img/medal_2.png",
+      "www/img/medal_1.png",
+      "www/img/medal_3.png"
+    ],
+    "refer": []
+  },
+  "www/tpl/myteam_sub.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf",
+      "www/img/bg.jpg",
+      "www/js/common.js"
+    ],
+    "refer": []
+  },
+  "www/tpl/myteam.html": {
+    "resources": [
+      "www/tpl/myteam_sub.html",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": [
+      "www/tpl/myteam_sub.html"
+    ]
+  },
+  "www/tpl/verify.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf",
+      "www/img/bg.jpg",
+      "www/tpl/verify.html"
+    ],
+    "refer": [
+      "www/tpl/verify.html",
+      "www/tpl/coach.html",
+      "www/tpl/instance.html"
+    ]
+  },
+  "www/tpl/template.html": {
+    "resources": [
+      "www/img/cover.jpg",
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": [
+      "www/tpl/new.html"
+    ]
+  },
+  "www/tpl/new.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/cover.jpg",
+      "www/img/bg.jpg",
+      "www/fonts/mui.ttf",
+      "www/js/mui.picker.min.js",
+      "www/tpl/new.html",
+      "www/css/mui.picker.css",
+      "www/css/mui.picker.min.css"
+    ],
+    "refer": [
+      "www/tpl/new.html",
+      "www/tpl/activity_ok.html"
+    ]
+  },
+  "www/tpl/home.html": {
+    "resources": [
+      "www/img/title.png",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/bg.jpg"
+    ],
+    "refer": [
+      "www/tpl/player.html",
+      "www/tpl/coach.html",
+      "www/tpl/verify.html",
+      "www/tpl/manager.html"
+    ]
+  },
+  "www/tpl/player.html": {
+    "resources": [
+      "www/img/cover.jpg",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf",
+      "www/img/bg.jpg"
+    ],
+    "refer": [
+      "www/tpl/choice.html"
+    ]
+  },
+  "www/tpl/choice.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/title.png",
+      "www/img/bg.jpg",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": [
+      "www/tpl/create.html",
+      "www/tpl/join.html"
+    ]
+  },
+  "www/tpl/instance.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/cover.jpg",
+      "www/img/bg.jpg",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": [
+      "www/tpl/coach.html"
+    ]
+  },
+  "www/tpl/manager.html": {
+    "resources": [
+      "www/img/cover.jpg",
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": [
+      "www/tpl/new.html",
+      "www/tpl/template.html",
+      "www/tpl/edit_activity.html",
+      "www/tpl/chapter_list.html"
+    ]
+  },
+  "www/tpl/activity_ok.html": {
+    "resources": [
+      "www/css/mui.picker.css",
+      "www/css/mui.poppicker.css",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/bg.jpg"
+    ],
+    "refer": [
+      "www/tpl/new_chapter.html"
+    ]
+  },
+  "www/tpl/edit_activity.html": {
+    "resources": [
+      "www/js/mui.picker.min.js",
+      "www/css/mui.picker.min.css",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/bg.jpg",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "www/tpl/chapter_list.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/bg.jpg",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": [
+      "www/tpl/edit_chapter.html",
+      "www/tpl/new_chapter.html"
+    ]
+  },
+  "www/tpl/edit_chapter.html": {
+    "resources": [
+      "www/js/mui.picker.min.js",
+      "www/css/mui.picker.min.css",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/img/bg.jpg",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "www/tpl/new_chapter.html": {
+    "resources": [
+      "www/js/mui.picker.min.js",
+      "www/img/bg.jpg",
+      "www/css/mui.picker.min.css",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/js/common.js",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "www/tpl/leftoff.html": {
+    "resources": [
+      "www/fonts/iconfont.ttf",
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/css/iconfont.css",
+      "www/fonts/mui.ttf",
+      "www/img/title_1.png"
+    ],
+    "refer": []
+  },
+  "www/tpl/homepage.html": {
+    "resources": [
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf",
+      "www/img/title_1.png"
+    ],
+    "refer": []
+  },
+  "www/tpl/gamedetailpage.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf",
+      "www/img/title_1.png"
+    ],
+    "refer": []
+  },
+  "www/tpl/my.html": {
+    "resources": [
+      "www/fonts/iconfont.ttf",
+      "www/js/mui.min.js",
+      "www/img/title_1.png",
+      "www/css/mui.min.css",
+      "www/css/iconfont.css",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "www/tpl/myactive.html": {
+    "resources": [
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/img/title_1.png",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "www/tpl/gametype.html": {
+    "resources": [
+      "www/img/bg.jpg",
+      "www/js/mui.min.js",
+      "www/img/title_1.png",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "www/tpl/gamedescript.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf",
+      "www/img/title_1.png"
+    ],
+    "refer": []
+  },
+  "www/tpl/setjudge.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf",
+      "www/fonts/iconfont.ttf",
+      "www/css/iconfont.css"
+    ],
+    "refer": []
+  },
+  "www/tpl/gamebaseinformation.html": {
+    "resources": [
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/fonts/mui.ttf"
+    ]
+  }
+}

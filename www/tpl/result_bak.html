@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<link href="../css/mui.dtpicker.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<style type="text/css">
+			body,.mui-content{background: url(../img/bg.jpg) no-repeat;background-size:cover;color:#fff;}
+			.btn{width:45%;height:35px;}
+			.mui-content-padded{line-height: 35px;}
+			.button{width:86%;background:#07608a;opacity:0.6;margin:40% auto;height:40px;line-height:0px;border-radius:0;color:#fff;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<h1 class="mui-title" style="color:#fff;">打分</h1>
+		</header>
+		
+		<div class="mui-content" style="padding-top:40%;text-align: center;">
+			<div class="mui-content-padded">
+				<label>总共用时：</label>
+				<button id='showCityPicker' data-options='{"type":"time"}' class="mui-btn btn" type='button'>点击输入成绩</button>
+				<div id='result' class="ui-alert"></div>
+			</div>
+			<div class="mui-content-padded">
+				<label>最后成绩：</label>
+				<div class="mui-numbox" data-numbox-step='10' data-numbox-min='10' data-numbox-max='3600' style="width:45%;">
+					<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+					<input class="mui-input-numbox" type="number" style="color:#000;"/>
+					<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+				</div>
+			</div>
+			<div class="mui-button-row">
+				<button type="button" id="create" class="mui-btn mui-btn-block mui-btn-outlined button">确&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.dtpicker.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script>
+			(function($) {
+				$.init();
+				var result = $('#result')[0];
+				var btns = $('.btn');
+				btns.each(function(i, btn) {
+					btn.addEventListener('tap', function() {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						var options = JSON.parse(optionsJson);
+						var id = this.getAttribute('id');
+						var picker = new $.DtPicker(options);
+						picker.show(function(rs) {
+							result.innerText ='选择结果: ' + rs.text;
+							picker.dispose();
+						});
+					}, false);
+				});
+			})(mui);
+		</script>
+	</body>
+
+</html>

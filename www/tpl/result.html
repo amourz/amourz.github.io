@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				color: #fff;
+				background-color: #000;
+			}
+			
+			.btn {
+				width: 45%;
+				height: 35px;
+			}
+			
+			.mui-content-padded {
+				line-height: 35px;
+			}
+			
+			.button {
+				width: 86%;
+				background: #07608a;
+				opacity: 0.6;
+				margin: 40% auto;
+				height: 40px;
+				line-height: 0px;
+				border-radius: 0;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+
+			<h1 class="mui-title" style="color:#fff;" id="h1">评定分数</h1>
+			<a class="mui-pull-right"></a>
+		</header>
+		<div class="mui-content" style="padding-top:40%;text-align: center;">
+			<div class="mui-content-padded">
+				<label>用时：</label>
+				<button id='showCityPicker' class="mui-btn btn" type='button'>点击输入</button>
+				<div id='cityResult' class="ui-alert"></div>
+				<input type="hidden" value="0" id="count" />
+			</div>
+			<div class="mui-content-padded">
+				<label>加分：</label>
+				<div class="mui-numbox" data-numbox-step='5' data-numbox-min='5' data-numbox-max='3600' style="width:38%;">
+					<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+					<input class="mui-input-numbox" type="number" id="score" style="color:#000;" />
+					<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+				</div> 分钟
+			</div>
+			<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-block mui-btn-outlined button post">确&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</button>
+			</div>
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/common.js"></script>
+	<script src="../js/mui.picker.min.js"></script>
+
+	<script src="../js/mui.poppicker.js"></script>
+	<script src="../js/time.data.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		var teamid = app.get('teamid');
+		var chapterid = app.get('chapterid');
+		var status = app.get('status');
+		var cid = app.get('cid');
+		var instance_id = app.get('instance_id');
+		//alert(cid);
+		var count = 0;
+		var score = 0;
+		mui('body').on('tap', '.post', function(e) {
+			var url = host + 'timedriver/event.php';
+			score = document.getElementById('score').value;
+			count = document.getElementById('count').value;
+			//alert(score);
+			//alert(count);
+			app.ajax.post(url, {
+				'act': 'judge',
+				'teamid': teamid,
+				'chapterid': chapterid,
+				'status': status,
+				'cid': cid,
+				'instance_id': instance_id,
+				'count': count,
+				'score': score * 60
+			}, function(rs) {
+				// alert(JSON.stringify(rs));
+				if(rs.result == 'ok') {
+					mui.toast('裁定成功,已通知到参赛队员');
+
+				} else {
+					mui.toast(rs.result);
+				}
+				var self = plus.webview.currentWebview();
+				var parent = self.opener();
+				var main = parent.opener();
+				plus.webview.close(parent);
+				plus.webview.close(self);
+				main.show();
+			});
+
+		});
+
+		mui.back = function() {
+
+		};
+
+		function back() {
+			var ws = null;
+			ws = plus.webview.currentWebview(); // 取当前Webview窗口
+			var wo = ws.opener(); // 取当前Webview窗口的创建者
+			plus.webview.close(wo); //关闭当前Webview窗口的创建者
+			plus.webview.close(ws); //关闭当前Webview窗口
+
+		}
+
+		(function($, doc) {
+			$.init();
+			$.ready(function() {
+				var cityPicker = new $.PopPicker({
+					layer: 2
+				});
+				cityPicker.setData(cityData);
+				var showCityPickerButton = doc.getElementById('showCityPicker');
+				var cityResult = doc.getElementById('cityResult');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker.show(function(items) {
+						cityResult.innerText = "你选择的时间是:" + items[0].text + " " + items[1].text;
+						document.getElementById('count').value = parseInt(items[0].text) * 60 + parseInt(items[1].text);
+					});
+				}, false);
+			});
+		})(mui, document);
+	</script>
+
+</html>

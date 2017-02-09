@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.rule {
+				width: 90%;
+				height: 20px;
+				margin: 10px auto;
+				line-height: 20px;
+				font-size: 1.3rem;
+				color: #00a4ed;
+			}
+			
+			.gamerule {
+				width: 90%;
+				margin: 0 auto;
+				font-size: 1.1rem;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;" id="h1">过关规则</h1>
+			<a class="mui-pull-right"></a>
+		</header>
+		<div class="mui-content" id="content">
+			<div class="rule">
+				<img src="../img/guize.png" style="height:20px;padding-right:10px;padding-top:3px;" />过关规则
+			</div>
+			<p class="gamerule" id="p"></p>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+			var id = app.get('id');
+			mui.init({
+				swipeBack: true
+			});
+
+			if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+
+			function init() {
+				var url = host + 'timedriver/event.php';
+				var html = '';
+				app.ajax.post(url, {
+					'act': 'all_rules',
+					'id': id
+				}, function(rs) {
+					console.log(JSON.stringify(rs));
+					for(var i = 0; i < rs.length; i++) {
+						html += '<div class=\"rule\"><img src=\"../img/guize.png\" style=\"height:20px;padding-right:10px;padding-top:3px;\" />' + rs[i].name + '</div>';
+						html += '<p class=\"gamerule\">' + rs[i].rule + '</p>';
+					}
+					document.querySelector('#content').innerHTML = html;
+				});
+			}
+		</script>
+	</body>
+
+</html>

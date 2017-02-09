@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.mui-input-group {
+				background: transparent;
+			}
+			
+			input::-webkit-input-placeholder {
+				color: #fff;
+			}
+			
+			.teamname {
+				width: 94%;
+				height: auto;
+				padding: 40px 20px 0px 15px;
+				border: 0;
+				margin: 10px 3%;
+			}
+			
+			.button {
+				width: 96%;
+				background: #07608a;
+				opacity: 0.6;
+				margin-left: 2%;
+				height: 40px;
+				margin-top: 5%;
+				line-height: 0px;
+				border-radius: 0;
+				color: #fff;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;" id="title">创建游戏关卡</h1>
+			<!--<a class="mui-pull-right iconfont icon-scan" style="line-height:44px;"></a>-->
+		</header>
+		<div class="mui-content">
+			<div class="teamname">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">游戏名称：</label>
+						<input type="text" id="name" class="input mui-input-clear" placeholder="" style="width:100%;position:absolute;padding-left:5px;color:#fff;">
+					</div>
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">过关规则：</label>
+						<input type="text" id="rule" class="input mui-input-clear" placeholder="" style="width:100%;position:absolute;padding-left:5px;color:#fff;">
+					</div>
+
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">报 名 费：</label>
+						<div class="mui-numbox" data-numbox-step='5' data-numbox-min='0' data-numbox-max='60' style="width:50%;border:0;background:transparent;position: absolute;">
+							<button class="mui-btn mui-btn-numbox-minus" type="button" style="color:#fff;background: transparent;">-</button>
+							<input class="mui-input-numbox" type="number" id="cost" style="color:#fff;" />
+							<button class="mui-btn mui-btn-numbox-plus" type="button" style="color:#fff;background: transparent;">+</button>
+						</div>
+					</div>
+
+				</form>
+				<div class="mui-button-row">
+					<button type="button" id="create" class="mui-btn mui-btn-block mui-btn-outlined button">确定</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" charset="utf-8">
+		mui.init({
+			swipeBack: true
+		});
+		var id = app.get('id');
+		//console.log(id);
+		mui('body').on('tap', '#create', function(e) {
+			mui('#create').button('正在提交');
+			var name = document.getElementById('name').value;
+			var rule = document.getElementById('rule').value;
+			var cost = document.getElementById('cost').value;
+
+			var url = host + 'timedriver/event.php';
+
+			if(!name || name.length == 0) {
+				app.toast('请输入游戏名称');
+				return false;
+			}
+
+			if(!rule || rule.length == 0) {
+				app.toast('请输入过关规则');
+				return false;
+			}
+
+			app.ajax.post(url, {
+				'act': 'new_chapter',
+				'name': name,
+				'rule': rule,
+				'cost': cost,
+				'id': id
+			}, function(rs) {
+				app.toast('创建关卡成功');
+				var self = plus.webview.currentWebview();
+				var parent = self.opener();
+				plus.webview.close(self);
+				parent.reload();
+			});
+
+		});
+	</script>
+
+</html>

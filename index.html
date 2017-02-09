@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="www/js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<link href="www/css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body {
+				background-color: #000;
+			}
+		</style>
+		<script type="text/javascript" charset="utf-8">
+			if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+				}
+				mui.init({
+					swipeBack: false,
+					subpages: [{
+						id: 'list',
+						url: 'list.html',
+						styles: {
+							top: '0px',
+							bottom: 0,
+							bounce: 'vertical'
+						}
+					}]
+				});
+
+				function init() {
+					plus.screen.lockOrientation("portrait-primary");
+
+				}
+		</script>
+	</head>
+
+	<body>
+
+	</body>
+
+</html>

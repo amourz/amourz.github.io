@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+				color:#fff;
+			}
+			
+			.mui-input-group {
+				background: transparent;
+			}
+			
+			.button {
+				width: 96%;
+				background: #07608a;
+				opacity: 0.6;
+				margin-left: 4%;
+				height: 40px;
+				margin-top: 5%;
+				line-height: 0px;
+				border-radius: 0;
+				color: #fff;
+			}
+			
+			label {
+				/*color: gray;*/
+				font-size: 16px;
+			}
+			
+			input::-webkit-input-placeholder{color:#fff;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">身份认证</h1>
+			<a class="mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card" style="padding:20px 30px 20px 15px;border-radius:5px;margin-top:70px;background: transparent;">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>手&nbsp;&nbsp;&nbsp;&nbsp;机</label>
+						<input type="number" class="mui-input" id="phone" placeholder="请输入手机号" style="width:100%;position:absolute;margin-left:-20px;">
+					</div>
+					<div style="display: block;width:100px;height:20px;font-size:14px;margin:-30px 0 10px 72%;padding-left:10px;">
+						<button id="sendcode" style="padding:2px 2px 0px 2px;margin-top:-1px;margin-left: -5px;color:#fff;background: transparent;">获取验证码</button>
+					</div>
+					<div class="mui-input-row">
+						<label>验证码</label>
+						<input type="number" class="mui-input" id="code" placeholder="请输入验证码" style="width:100%;position:absolute;margin-left:-20px;">
+					</div>
+					<div class="mui-button-row" style="height:60px;">
+						<button type="button" class="mui-btn mui-btn-outlined button" id="checkCode" style="margin-top:20px;margin-left:7%;">确定</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			var sendObj;
+			sendObj = document.querySelector('#sendcode');
+			
+			
+							//第一步填写手机号码获取验证码
+				mui('body').on('tap', '#sendcode', function() {
+					var url = host + 'timedriver/code.php';
+					var mobile = document.querySelector('#phone').value;
+					if(mobile.length != 11) {
+						app.alert('请填写正确手机号码');
+						return false;
+					} else {
+						var btnArray = ['确定', '取消'];
+						mui.confirm('我们将发送验证码短信到这个手机号码：+86 ' + mobile, '确认手机号码', btnArray, function(e) {
+							if(e.index == 0) {
+								app.ajax.post(url, {
+										'mobile': mobile,
+										'act': 'sendMobile'
+									},
+
+									function(rs) {
+										//app.alert(rs);
+										if(rs.status) {
+
+											countdown(60);
+
+										} else {
+											app.alert(rs.message)
+										}
+									});
+							} else {
+
+								return false;
+							}
+						})
+					}
+
+				});
+				
+			
+
+				//验证验证码
+				mui('body').on('tap', '#checkCode', function() {
+					var url = host + 'timedriver/code.php';
+					
+					var mobile = document.querySelector('#phone').value;
+					var code = document.querySelector('#code').value;
+					document.querySelector('#code').blur();
+					if(!mobile) {
+						app.alert('手机号码不能空');
+						return false;
+					}
+					if(code.length != 4) {
+						app.alert('请输入4位短信验证码');
+						return false;
+					}
+					app.ajax.post(url, {
+						'act':'checkMobile',
+						'mobile': mobile,
+						'code': code,
+						'binding':plus.device.uuid
+					}, function(rs) {
+						if (rs.status) {
+						if(rs.message==0){
+							app.toast('身份认证成功');
+//							var self=plus.webview.currentWebview();
+//							var parent=self.opener();
+//							plus.webview.close(parent);
+//							plus.webview.close(self);
+                            var uuid = plus.device.uuid;
+                            plus.storage.setItem('coach',uuid);
+                            //plus.storage.setItem('instance',id);
+							mui.openWindow({url:'instance.html',
+							id:'instance'
+							});
+							
+						}
+						else if(rs.message==0){
+							app.toast('你无权进入');
+							mui.back();
+						}
+                       }
+						else{
+							app.toast(rs.message);
+							mui.back();
+						}
+					});
+					
+				});	
+
+			function countdown(s) {
+				s--;
+				if(s == 0) {
+					sendObj.innerHTML = '重新获取';
+					//sendObj.setAttribute('data-lock', 0);
+				} else {
+					sendObj.innerHTML = '重新获取(' + s + '秒)';
+					//sendObj.setAttribute('data-lock', 1);
+					setTimeout(function() {
+						countdown(s)
+					}, 1000)
+				}
+			}
+		</script>
+	</body>
+
+</html>

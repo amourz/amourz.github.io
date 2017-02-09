@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+				color: #fff;
+			}
+			
+			.btn {
+				width: 70%;
+				margin-top: 40px;
+				padding: 10px;
+				font-size: 1.1rem;
+				opacity: 0.6;
+				border-radius: 0;
+				color: #fff;
+				font-weight: bold;
+				border-color: #03ffff;
+			}
+			
+			.mui-content-padded {
+				line-height: 35px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+
+			<h1 class="mui-title" style="color:#fff;" id="h1">活动创建成功</h1>
+			<a class="mui-pull-right"></a>
+		</header>
+		<div class="mui-content" style="padding-top:40%;text-align: center;">
+			<div class="mui-content-padded">
+				您可以：
+			</div>
+
+			<div class="mui-button-row" id="btn-group" style="margin-top:-50px;">
+				<button type="button" class="mui-btn mui-btn-outlined btn link" id="new_chapter" style="background:#078174;border-color:#00fd7c;">创建游戏关卡</button>
+				<button type="button" class="mui-btn mui-btn-outlined btn link" id="return" style="background:#078174;border-color:#00fd7c;">返回活动列表</button>
+
+			</div>
+
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="html5plus://ready"></script>
+	<script src="../js/common.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		var id = app.get('id');
+		mui('body').on('tap', '#return', function(e) {
+			back();
+		});
+		mui('body').on('tap', '#new_chapter', function(e) {
+			mui.openWindow({
+				url: 'new_chapter.html?id=' + id,
+				id: 'new_chapter.html'
+			});
+		});
+
+		mui.back = function() {
+
+		};
+
+		function back() {
+			var ws = null;
+			ws = plus.webview.currentWebview(); // 取当前Webview窗口
+			var wo = ws.opener(); // 取当前Webview窗口的创建者
+			var list = ws.opener().opener();
+			plus.webview.close(list);
+			plus.webview.close(wo); //关闭当前Webview窗口的创建者
+
+			plus.webview.close(ws); //关闭当前Webview窗口
+
+		}
+	</script>
+
+</html>

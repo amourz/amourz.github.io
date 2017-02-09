@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.mui-input-group {
+				background: transparent;
+			}
+			
+			input::-webkit-input-placeholder {
+				color: #fff;
+			}
+			
+			.teamname {
+				width: 94%;
+				height: auto;
+				padding: 40px 20px 0px 15px;
+				border: 0;
+				margin: 10px 3%;
+			}
+			
+			.button {
+				width: 96%;
+				background: #07608a;
+				opacity: 0.6;
+				margin-left: 4%;
+				height: 40px;
+				margin-top: 5%;
+				line-height: 0px;
+				border-radius: 0;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">创建战队</h1>
+			<a class="mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+			<div class="teamname">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">战队名称：</label>
+						<input type="text" id="name" class="input mui-input-clear" placeholder="1-6位队伍名称" style="width:100%;position:absolute;padding-left:5px;color:#fff;">
+					</div>
+				</form>
+
+				<div class="mui-button-row">
+					<button type="button" id="create" class="mui-btn mui-btn-block mui-btn-outlined button">确&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</button>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			var id=app.get('id');
+				mui('body').on('tap', '#create', function(e) {
+					mui('#create').button('正在提交');
+					var name = document.getElementById('name').value;
+
+					var url = host + 'timedriver/event.php';
+					if(!name || name.length > 6) {
+						app.toast('战队名称限定1-6个字符');
+						return false;
+					}
+
+					app.ajax.post(url, {
+						'act': 'check_team',
+						'id':id
+					}, function(rs) {
+
+						if(rs.result == 0) {
+							app.toast('无法创建战队，队伍数量已满');
+							mui.back();
+						} else {
+
+							app.ajax.post(url, {
+								'act': 'create',
+								'name': name,
+								'binding': plus.device.uuid,
+								'id':id
+							}, function(rs) {
+                                //console.log(JSON.stringify(rs));
+								if(rs) {
+									app.toast('成功创建'+rs.name+',系统随机给你分配了队旗颜色');
+									var uuid = plus.device.uuid;
+									plus.storage.setItem('uuid',uuid);
+                                    plus.storage.setItem('instance',id);
+									var mainWV = plus.webview.create('main.html?id='+id, 'main');
+									plus.webview.show(mainWV);
+
+								}
+							});
+						}
+					});
+
+				});
+		</script>
+	</body>
+
+</html>

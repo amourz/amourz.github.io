@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.btn {
+				width: 70%;
+				margin-top: 40px;
+				padding: 10px;
+				font-size: 1.1rem;
+				opacity: 0.6;
+				border-radius: 0;
+				color: #fff;
+				font-weight: bold;
+				border-color: #03ffff;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;" id="title">创建活动-选择模板</h1>
+			<!--<a class="mui-pull-right iconfont icon-scan" style="line-height:44px;"></a>-->
+		</header>
+		<div class="mui-content" id="content">
+
+		</div>
+	</body>
+<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true
+			});
+			var first = null;
+			if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+
+			function init() {
+				plus.navigator.closeSplashscreen();
+				plus.navigator.setFullscreen(false);
+				initPage();
+
+			}
+
+			mui('body').on('tap', '.link', function(e) {
+				var url = this.getAttribute('data-url');
+				mui.openWindow({
+					url: url,
+					id: 'new'
+				});
+
+			});
+
+			function initPage() {
+
+				var url = host + 'timedriver/event.php';
+				app.ajax.post(url, {
+					'act': 'template'
+				}, function(rs) {
+					console.log(JSON.stringify(rs));
+					var html = "";
+					for(var i = 0; i < rs.length; i++) {
+						html += '<div class=\"mui-card link\" data-url=\"new.html?id=' + rs[i].id + '\">';
+						var cover = (rs[i].pic) ? rs[i].pic : 'pic.jpg';
+						html += '<div class=\"mui-card-header mui-card-media\" style=\"height:40vw;background-image:url(../img/' + cover + ')\"></div>';
+						html += '<div class=\"mui-card-content\"><div class=\"mui-card-content-inner\">';
+						html += '<p>' + rs[i].name + '</p><p style=\"color: #333;\">' + rs[i].desc + '</p></div></div></div>';
+
+					}
+					document.querySelector('#content').innerHTML += html;
+
+				});
+			}
+		</script>
+</html>

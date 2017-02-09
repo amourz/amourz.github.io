@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.rule {
+				width: 90%;
+				height: 20px;
+				margin: 10px auto;
+				line-height: 20px;
+				font-size: 1.3rem;
+				color: #00a4ed;
+			}
+			
+			.gamerule {
+				width: 90%;
+				margin: 0 auto;
+				font-size: 1.1rem;
+				color: cdd1d4;
+			}
+			
+			.button {
+				width: 96%;
+				background: #07608a;
+				opacity: 0.6;
+				margin-top: 96%;
+				margin-left: 2%;
+				height: 40px;
+				line-height: 0px;
+				border-radius: 0;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;" id="h1"></h1>
+			<a class="mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+			<div class="rule">
+				<img src="../img/guize.png" style="height:20px;padding-right:10px;padding-top:3px;" />过关规则
+			</div>
+			<p class="gamerule" id="p">
+
+			</p>
+		</div>
+		<div class="mui-tab mui-bar-tab mui-button-row" style="position:fixed;margin-bottom:20px;" id="do">
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				swipeBack: true
+			});
+			var cost = 0;
+			var teamid = 0;
+			var chapterid = 0;
+			var  chapter_name,instance_id;
+      		if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+			
+			mui('body').on('tap', '#done', function() {
+					var url = 'done.html?teamid=' + teamid + '&chapterid=' + chapterid + '&instance_id=' + instance_id;
+					mui.openWindow({
+						id: 'done.html',
+						url: url
+					});
+				});
+				mui('body').on('tap', '#apply', function() {
+
+					var btnArray = ['否', '是'];
+					var tip = (cost > 0) ? '挑战此关需要扣除' + cost + '分钟时间，确定要参加吗' : '确定要参加吗？ ';
+
+					mui.confirm(tip, chapter_name, btnArray, function(e) {
+
+						if(e.index == 1) {
+							var url = host + 'timedriver/event.php';
+							console.log('开始检查'+chapterid);
+							app.ajax.post(url, {
+								'act': 'check_existed',
+								'teamid': teamid,
+								'chapterid': chapterid
+							}, function(rs) {
+								//alert(JSON.stringify(rs));
+								if(rs.result == 0) {
+									app.toast('你的队友已经报过名了');
+									mui.back();
+								} else if(rs.result == 1) {
+                                    console.log('开始报名');
+									var url = host + 'timedriver/event.php';
+									app.ajax.post(url, {
+										'act': 'apply',
+										'teamid': teamid,
+										'cost': cost,
+										'instance_id':instance_id,
+										'chapterid': chapterid
+									}, function(rs) {
+                                        console.log(JSON.stringify(rs));
+										if(rs) {
+
+											app.toast('成功领取任务，赶紧行动起来吧，骚年！');
+											var self = plus.webview.currentWebview();
+											var main = self.opener();
+											plus.webview.close(self);
+											mui.fire(main, 'fade', {
+												teamid: teamid
+											});
+											main.show();
+											//main.reload();
+
+										}
+									});
+								}
+
+							});
+						}
+					});
+				});
+
+			function log(rs) {
+				var self = plus.webview.currentWebview();
+				var main = plus.webview.getWebviewById('main');
+				var main_sub = plus.webview.getWebviewById('main_sub');
+				var newDate = new Date(rs.log.date * 1000);
+				var time = newDate.getHours() + ':' + newDate.getMinutes();
+				var content = '<li><span class=\"name\">' + time + '</span> 我' + rs.log.event + '</li>';
+				var cost = rs.log.cost;
+				mui.fire(main_sub, 'log', {
+					content: content,
+					cost: cost
+				});
+				plus.webview.close(self);
+				main.show();
+			}
+
+			function init() {
+				var url = host + 'timedriver/event.php';
+				//var uri=window.location.href;
+				//console.log(uri);
+				chapterid = app.get('chapterid');
+				//console.log(chapterid);
+				app.ajax.post(url, {
+					'act': 'rule',
+					'id': chapterid,
+					'binding': plus.device.uuid
+				}, function(rs) {
+
+					teamid = rs.myteam;
+					console.log(JSON.stringify(rs));
+					if(rs.chapter) {
+						document.querySelector('#h1').innerHTML = rs.chapter.name;
+						chapter_name=rs.chapter.name;
+						document.querySelector('#p').innerHTML = rs.chapter.rule;
+						cost = rs.chapter.cost;
+						instance_id=rs.chapter.instance_id;
+
+					}
+
+					if(rs.status.status !== undefined) {
+						if(rs.status.status == 0) {
+							document.querySelector('#do').innerHTML = '<button type=\"button\" id=\"done\"  class="mui-btn mui-btn-block mui-btn-outlined button">提&nbsp;&nbsp;交&nbsp;&nbsp;成&nbsp;&nbsp;绩</button>';
+						} else if(rs.status.status == -1) {
+							document.querySelector('#do').innerHTML = '<button type=\"button\" id=\"apply\" class="mui-btn mui-btn-block mui-btn-outlined button">重&nbsp;&nbsp;新&nbsp;&nbsp;参&nbsp;&nbsp;加</button>';
+						} else if(rs.status.status == 1) {
+							document.querySelector('#do').innerHTML = '<button type=\"button\" id=\"pass\" class="mui-btn mui-btn-block mui-btn-outlined button">成&nbsp;&nbsp;功&nbsp;&nbsp;过&nbsp;&nbsp;关</button>';
+
+						}
+					} else {
+						document.querySelector('#do').innerHTML = '<button type=\"button\" id=\"apply\" class="mui-btn mui-btn-block mui-btn-outlined button">我&nbsp;&nbsp;要&nbsp;&nbsp;参&nbsp;&nbsp;加</button>';
+					}
+				});
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.mui-input-group {
+				background: transparent;
+			}
+			
+			input::-webkit-input-placeholder {
+				color: #fff;
+			}
+			
+			.teamname {
+				width: 94%;
+				height: auto;
+				padding: 40px 20px 0px 15px;
+				border: 0;
+				margin: 10px 3%;
+			}
+			
+			.button {
+				width: 96%;
+				background: #07608a;
+				opacity: 0.6;
+				margin-left: 2%;
+				height: 40px;
+				margin-top: 5%;
+				line-height: 0px;
+				border-radius: 0;
+				color: #fff;
+			}
+			
+		</style>
+
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;" id="title">编辑活动</h1>
+			<!--<a class="mui-pull-right iconfont icon-scan" style="line-height:44px;"></a>-->
+		</header>
+		<div class="mui-content">
+			<div class="teamname">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">活动名称：</label>
+						<input type="text" id="name" class="input mui-input-clear" placeholder="" style="width:100%;position:absolute;padding-left:5px;color:#fff;">
+					</div>
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">活动简介：</label>
+						<input type="text" id="desc" class="input mui-input-clear" placeholder="" style="width:100%;position:absolute;padding-left:5px;color:#fff;">
+					</div>
+					<!--<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">封面图片：</label>
+						<input type="text" id="name" class="input mui-input-clear" placeholder="" style="width:100%;position:absolute;padding-left:5px;color:#fff;">
+					</div>-->
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">队伍数量：</label>
+						<div class="mui-numbox" data-numbox-step='1' data-numbox-min='1' data-numbox-max='8' style="background-color:transparent;position:absolute;width:50%;border:0;">
+							<button class="mui-btn mui-btn-numbox-minus" type="button" style="background: transparent;color:#fff;">-</button>
+							<input class="mui-input-numbox" type="number" id="num" style="color:#fff;border:0;" />
+							<button class="mui-btn mui-btn-numbox-plus" type="button" style="background: transparent;color:#fff;">+</button>
+						</div>
+					</div>
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">开始时间：</label>
+						<button id='start' data-options='{}' class="btn mui-btn " style="width:auto;color:#fff;border:0;background: transparent;line-height: 20px;position:absolute;padding-left:5px;">选择开始时间 </button>
+					</div>
+					<div class="mui-input-row">
+						<label style="color:#fff;padding-left:5px;">结束时间：</label>
+						<button id='end' data-options='{}' class="btn mui-btn " style="width:auto;color:#fff;border:0;background: transparent;line-height: 20px;position:absolute;padding-left:5px;">选择结束时间 </button>
+					</div>
+
+				</form>
+				<div class="mui-button-row">
+					<button type="button" id="edit" class="mui-btn mui-btn-block mui-btn-outlined button">确定</button>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		(function($) {
+			$.init();
+			//var result = $('#result')[0];
+			var btns = $('.btn');
+			btns.each(function(i, btn) {
+				btn.addEventListener('tap', function() {
+					var optionsJson = this.getAttribute('data-options') || '{}';
+					var options = JSON.parse(optionsJson);
+					var id = this.getAttribute('id');
+
+					var picker = new $.DtPicker(options);
+					picker.show(function(rs) {
+
+						//result.innerText = '选择结果: ' + rs.text;
+						console.log(rs.text);
+						document.getElementById(id).innerText = rs.text;
+						picker.dispose();
+					});
+				}, false);
+			});
+		})(mui);
+	</script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true
+			});
+			var id = app.get('id');
+			if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+
+			mui('body').on('tap', '#edit', function(e) {
+				mui('#edit').button('正在提交');
+				var name = document.getElementById('name').value;
+				var desc = document.getElementById('desc').value;
+				var num = document.getElementById('num').value;
+				var start = document.getElementById('start').innerText;
+				var end = document.getElementById('end').innerText;
+
+				var url = host + 'timedriver/event.php';
+
+				if(!name || name.length == 0) {
+					app.toast('请输入活动名称');
+					return false;
+				}
+
+				if(!desc || desc.length == 0) {
+					app.toast('请输入活动简介');
+					return false;
+				}
+				//console.log(start);
+				if(start == '选择开始时间') {
+					app.toast('请选择活动开始时间');
+					return false;
+				}
+				if(end == '选择结束时间') {
+					app.toast('请选择活动结束时间');
+					return false;
+				}
+				app.ajax.post(url, {
+					'act': 'update_activity',
+					'name': name,
+					'desc': desc,
+					'start': start,
+					'end': end,
+					'num': num,
+					'id': id
+				}, function(rs) {
+					console.log(JSON.stringify(rs));
+					if(rs.result == 1) {
+						app.toast('编辑成功');
+						var self = plus.webview.currentWebview();
+						var parent = self.opener();
+						plus.webview.close(self);
+						parent.reload();
+
+					}
+				});
+
+			});
+
+			function init() {
+
+				var url = host + 'timedriver/event.php';
+				app.ajax.post(url, {
+					'act': 'activity_info',
+					'id': id
+				}, function(rs) {
+					//console.log(JSON.stringify(rs));
+					document.getElementById('name').value = rs.name;
+					document.getElementById('desc').value = rs.desc;
+					document.getElementById('num').value = rs.num;
+					document.getElementById('start').innerText = rs.start_time;
+					document.getElementById('end').innerText = rs.end_time;
+
+				});
+			}
+		</script>
+</html>

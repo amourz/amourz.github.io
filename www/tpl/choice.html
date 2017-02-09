@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.btn {
+				width: 70%;
+				margin-top: 40px;
+				padding: 10px;
+				font-size: 1.1rem;
+				opacity: 0.6;
+				border-radius: 0;
+				color: #fff;
+				font-weight: bold;
+				border-color: #03ffff;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;" id="title">Time Driver</h1>
+			<!--<a class="mui-pull-right iconfont icon-scan" style="line-height:44px;"></a>-->
+		</header>
+		<div class="mui-content">
+			<img src="../img/title.png" style="width:100%;" />
+			<!--<h2 style="width:150px;height:200px;text-align: center;line-height:40px;color: #fff;margin:-80px auto;">欢迎来到<div></div></h2>-->
+			<div class="mui-button-row" id="btn-group" style="margin-top:-50px;">
+
+			</div>
+		</div>
+	</body>
+		<script type="text/javascript" charset="utf-8">
+			mui.init({
+				swipeBack: true
+			});
+			var first = null;
+			var id;
+			if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+
+			function init() {
+				plus.navigator.closeSplashscreen();
+				plus.navigator.setFullscreen(false);
+				initPage();
+
+			}
+
+			mui('body').on('tap', '.link', function(e) {
+				var url = this.getAttribute('data-url');
+				mui.openWindow({
+					url: url
+				});
+
+			});
+
+			function initPage() {
+				id = app.get('id');
+				var url = host + 'timedriver/event.php';
+				app.ajax.post(url, {
+					'act': 'team',
+					'id': id
+				}, function(rs) {
+					//alert(JSON.stringify(rs));
+					document.querySelector('#title').innerHTML += '之' + rs.name;
+					if(rs.joined < rs.num) {
+						var html = '<button type=\"button\" class=\"mui-btn mui-btn-outlined btn link\" data-url=\"create.html?id=' + id + '\" style=\"background:#078174;border-color:#00fd7c;\">创&nbsp;&nbsp;建&nbsp;&nbsp;战&nbsp;&nbsp;队</button>';
+						html += '<button type=\"button\" class=\"mui-btn mui-btn-outlined btn link\" data-url=\"join.html?id=' + id + '\" style=\"background:#037b93;border-color:#04fff5;\">加&nbsp;&nbsp;入&nbsp;&nbsp;战&nbsp;&nbsp;队</button>';
+						document.querySelector('#btn-group').innerHTML = html;
+					} else {
+						var html = '';
+						html += '<button type=\"button\" class=\"mui-btn mui-btn-outlined btn link\" data-url=\"join.html?id=' + id + '\" style=\"background:#037b93;border-color:#04fff5;\">加&nbsp;&nbsp;入&nbsp;&nbsp;战&nbsp;&nbsp;队</button>';
+						document.querySelector('#btn-group').innerHTML = html;
+					}
+				});
+			}
+		</script>
+</html>

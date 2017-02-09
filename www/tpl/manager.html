@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.btn {
+				width: 70%;
+				margin-top: 40px;
+				padding: 10px;
+				font-size: 1.1rem;
+				opacity: 0.6;
+				border-radius: 0;
+				color: #fff;
+				font-weight: bold;
+				border-color: #03ffff;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:#103E5C;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;" id="title">Time Driver-活动列表</h1>
+			<a class="mui-pull-right link" data-url="template.html" style="font-size:1rem;line-height:44px;color:#fff;">新建+</a>
+		</header>
+		<div class="mui-content" id="my">
+
+		</div>
+	</body>
+
+	<script type="text/javascript" charset="utf-8">
+		if(window.plus) {
+			init();
+		} else {
+			document.addEventListener('plusready', function() {
+				init();
+			}, false);
+		}
+		mui.init({
+				swipeBack: true
+			});
+		var first = null;
+
+		function init() {
+			plus.navigator.closeSplashscreen();
+			plus.navigator.setFullscreen(false);
+			initPage();
+
+		}
+
+		mui('body').on('tap', '.link', function(e) {
+			var url = this.getAttribute('data-url');
+			mui.openWindow({
+				url: url
+			});
+
+		});
+
+		function getLocalTime(nS) {
+			return new Date(parseInt(nS) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
+		}
+
+		function initPage() {
+
+			var url = host + 'timedriver/event.php';
+			app.ajax.post(url, {
+				'act': 'activity_list',
+				'binding': plus.device.uuid
+			}, function(rs) {
+				console.log(JSON.stringify(rs));
+				var html = '';
+
+				for(var i = 0; i < rs.my.length; i++) {
+					html += '<div class=\"mui-card\">';
+					var cover = (rs.my[i].pic) ? rs.my[i].pic : 'cover.jpg';
+					html += '<div class=\"mui-card-header mui-card-media\" style=\"height:40vw;background-image:url(../img/' + cover + ')\"></div>';
+					html += '<div class=\"mui-card-content\"><div class=\"mui-card-content-inner\">';
+					var timestamp = Date.parse(new Date()) / 1000;
+
+					//var mood=(rs.my[i].status==1)?'<a class=\"click\" data-url=\"\">进行中，点击停止</a>':'<a class=\"link\" data-url=\"\">未开始，点击启用</a>';
+					var mood = '进行中';
+
+					html += '<p>' + rs.my[i].name + '<span class=\"mui-pull-right\">' + mood + '</span></p><p style=\"color: #333;\">' + rs.my[i].desc + '</p></div></div>';
+					html += '<div class=\"mui-card-footer\"><a class=\"mui-card-link link\" data-url=\"edit_activity.html?id=' + rs.my[i].id + '\">编辑活动</a><a class=\"mui-card-link link\" data-url=\"chapter_list.html?id=' + rs.my[i].id + '\">设置游戏</a></div></div>';
+
+				}
+				//html+='<div class=\"mui-button-row\"><button type=\"button\" class=\"mui-btn mui-btn-outlined btn link\" data-url=\"template.html\" style=\"background:#037b93;border-color:#04fff5;\">新&nbsp;&nbsp;建&nbsp;&nbsp;活&nbsp;&nbsp;动</button></div>';
+
+				document.querySelector('#my').innerHTML += html;
+
+			});
+		}
+	</script>
+
+</html>

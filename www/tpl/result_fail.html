@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+				color: #fff;
+			}
+			
+			.btn {
+				width: 45%;
+				height: 35px;
+			}
+			
+			.mui-content-padded {
+				line-height: 35px;
+			}
+			
+			.button {
+				width: 30%;
+				background: #07608a;
+				opacity: 0.6;
+				margin: 40% auto;
+				height: 40px;
+				line-height: 0px;
+				border-radius: 0;
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+
+			<h1 class="mui-title" style="color:#fff;" id="h1">确认判定</h1>
+			<a class="mui-pull-right"></a>
+		</header>
+		<div class="mui-content" style="padding-top:40%;text-align: center;">
+			<div class="mui-content-padded">
+				确认要判定挑战失败吗？
+			</div>
+
+			<div class="mui-button-row">
+				<button type="button" class="mui-btn mui-btn-outlined button post">确&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</button>
+				<button type="button" class="mui-btn mui-btn-outlined button cancel">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</button>
+			</div>
+
+		</div>
+
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/common.js"></script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init();
+		var teamid = app.get('teamid');
+		var chapterid = app.get('chapterid');
+		var status = app.get('status');
+		var cid = app.get('cid');
+		var instance_id = app.get('instance_id');
+		var count = 0;
+		var score = 0;
+		mui('body').on('tap', '.cancel', function(e) {
+			back();
+		});
+
+		mui('body').on('tap', '.post', function(e) {
+			var url = host + 'timedriver/event.php';
+
+			app.ajax.post(url, {
+				'act': 'judge',
+				'teamid': teamid,
+				'chapterid': chapterid,
+				'status': status,
+				'cid': cid,
+				'instance_id': instance_id,
+				'count': count,
+				'score': score
+			}, function(rs) {
+
+				if(rs.result == 'ok') {
+					mui.toast('裁定成功,已通知到参赛队员');
+
+				} else {
+					mui.toast(rs.result);
+				}
+				var self = plus.webview.currentWebview();
+				var parent = self.opener();
+				var main = parent.opener();
+				plus.webview.close(parent);
+				plus.webview.close(self);
+				main.show();
+			});
+
+		});
+
+		mui.back = function() {
+
+		};
+
+		function back() {
+			var ws = null;
+			ws = plus.webview.currentWebview(); // 取当前Webview窗口
+			var wo = ws.opener(); // 取当前Webview窗口的创建者
+			plus.webview.close(wo); //关闭当前Webview窗口的创建者
+			plus.webview.close(ws); //关闭当前Webview窗口
+
+		}
+	</script>
+
+</html>

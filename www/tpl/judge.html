@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body {
+				background-color: #000;
+			}
+		</style>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+
+		<style type="text/css">
+			* {
+				-webkit-user-select: none;
+			}
+			
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+			}
+			
+			#bcid {
+				height: 480px;
+				width: 360px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">扫码裁定成绩</h1>
+		</header>
+		<div class="mui-content">
+			<div id="bcid"></div>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		mui.init({
+			swipeBack: true
+		});
+		var scan = null;
+		if(window.plus) {
+			startScan();
+		} else {
+			document.addEventListener('plusready', function() {
+				startScan();
+			}, false);
+		}
+
+		function onmarked(type, result) {
+			var text = '未知: ';
+			switch(type) {
+				case plus.barcode.QR:
+					text = 'QR: ';
+					break;
+				case plus.barcode.EAN13:
+					text = 'EAN13: ';
+					break;
+				case plus.barcode.EAN8:
+					text = 'EAN8: ';
+					break;
+				case plus.barcode.AZTEC:
+					text = 'AZTEC: ';
+					break;
+				case plus.barcode.DATAMATRIX:
+					text = 'DATAMATRIX: ';
+					break;
+				case plus.barcode.UPCA:
+					text = 'UPCA: ';
+					break;
+				case plus.barcode.UPCE:
+					text = 'UPCE: ';
+					break;
+				case plus.barcode.CODABAR:
+					text = 'CODABAR: ';
+					break;
+				case plus.barcode.CODE39:
+					text = 'CODE39: ';
+					break;
+				case plus.barcode.CODE93:
+					text = 'CODE93: ';
+					break;
+				case plus.barcode.CODE128:
+					text = 'CODE128: ';
+					break;
+				case plus.barcode.ITF:
+					text = 'ITF: ';
+					break;
+				case plus.barcode.MAXICODE:
+					text = 'MAXICODE: ';
+					break;
+				case plus.barcode.PDF417:
+					text = 'PDF417: ';
+					break;
+				case plus.barcode.RSS14:
+					text = 'RSS14: ';
+					break;
+				case plus.barcode.RSSEXPANDED:
+					text = 'RSSEXPANDED: ';
+					break;
+			}
+			//alert( text+result );
+			//scan.cancel();
+			var arr = result.split('&');
+			var teamid = arr[0];
+			//alert(teamid);
+			var chapterid = arr[1];
+			var cid = arr[2];
+			var instance_id = arr[3];
+			//alert(cid);
+			var status, result_id;
+
+			var btnArray = ['失败', '成功'];
+			mui.confirm('请判定挑战是否成功？', '', btnArray, function(e) {
+				if(e.index == 1) {
+					status = 1;
+					result_id = 'result.html';
+
+				} else {
+					status = -1;
+					result_id = 'result_fail.html';
+				}
+				var url = result_id + '?status=' + status + '&teamid=' + teamid + '&chapterid=' + chapterid + '&cid=' + cid + '&instance_id=' + instance_id;
+				mui.openWindow({
+					id: result_id,
+					url: url
+				});
+			})
+
+		}
+
+		function startRecognize() {
+			scan = new plus.barcode.Barcode('bcid');
+			scan.onmarked = onmarked;
+		}
+
+		function startScan() {
+			startRecognize()
+			scan.start();
+		}
+
+		function cancelScan() {
+			scan.cancel();
+		}
+
+		function setFlash() {
+			scan.setFlash();
+		}
+	</script>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				background-color: #000;
+			}
+			
+			.btn {
+				width: 70%;
+				margin-top: 40px;
+				padding: 10px;
+				font-size: 1.1rem;
+				opacity: 0.6;
+				border-radius: 0;
+				color: #fff;
+				font-weight: bold;
+				border-color: #03ffff;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:#103E5C;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;" id="title"></h1>
+			<a class="mui-pull-right link" data-url="new_chapter.html" style="font-size:1rem;line-height:44px;color:#fff;">新建+</a>
+		</header>
+		<div class="mui-content" id="list">
+
+		</div>
+	</body>
+		<script type="text/javascript" charset="utf-8">
+
+			mui.init({
+				swipeBack: true
+			});
+			var first = null;
+			var id=app.get('id');
+				if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+			 mui('body').on('tap', '.link', function(e) {
+					var wvid=this.getAttribute('data-url');
+					var url = this.getAttribute('data-url')+'?id='+id;
+					mui.openWindow({
+						url: url,
+						id:wvid
+					});
+
+				});	
+
+			function init() {
+ 
+				var url = host + 'timedriver/event.php';
+				app.ajax.post(url, {
+					'act': 'chapter_list',
+					'id':id
+				}, function(rs) {
+					//console.log(JSON.stringify(rs));
+					var html='';
+					
+					for(var i=0;i<rs.chapter.length;i++){
+					html+='<div class=\"mui-card\"><div class=\"mui-card-content\"><div class=\"mui-card-content-inner\">';
+				    html+='<p>游戏名:'+rs.chapter[i].name+'</p>';
+					html+='<p style=\"color: #333;\">规则:'+rs.chapter[i].rule+'</p>';
+					html+='</div></div><div class=\"mui-card-footer\">';
+				    html+='<a class=\"mui-card-link link\" data-url=\"edit_chapter.html?id='+rs.chapter[i].id+'\">编辑</a>';
+					html+='<a class=\"mui-card-link\"></a></div></div>';
+				    }
+					   
+					document.querySelector('#list').innerHTML+=html; 
+					document.querySelector('#title').innerHTML=rs.instance.name+'-游戏关卡设置';   
+					
+				});
+			}
+		</script>
+</html>

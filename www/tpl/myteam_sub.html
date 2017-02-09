@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: url(../img/bg.jpg) no-repeat;
+				background-size: cover;
+				color: #fff;
+			}
+			
+			.doc {
+				color: #00ec7e;
+				font-size: 1.4rem;
+			}
+			
+			.doc1 {
+				color: #ff8808;
+				font-size: 1.4rem;
+			}
+			
+			.time {
+				margin-top: 10px;
+			}
+			
+			.success {
+				color: #fff;
+				font-size: 1.1rem;
+				margin-top: 10px;
+			}
+			
+			.mui-table-view-cell.mui-active {
+				background: transparent;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background:#030f25;opacity: 0.8;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#fff;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #e2e7e4;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">我的战队</h1>
+			<a class="mui-pull-right" id="quit" style="font-size:1rem;line-height:44px;color:#fff;"></a>
+		</header>
+		<div id="pullrefresh" class="mui-content  mui-scroll-wrapper" style="overflow: visible;">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" style="background: transparent;" id="content">
+				</ul>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script type="text/javascript">
+			var creator = null;
+			if(window.plus) {
+				init();
+			} else {
+				document.addEventListener('plusready', function() {
+					init();
+				}, false);
+			}
+			mui.init({
+				swipeBack: true,
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					}
+				}
+			});
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+
+				setTimeout(function() {
+					init();
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+
+			mui('body').on('tap', '#quit', function() {
+				var btnArray = ['是', '否'];
+
+				mui.confirm('真的要退出该队吗？您在该队的历史记录将会被清除，不可恢复！', '', btnArray, function(e) {
+					if(e.index == 0) {
+
+						var url = host + 'timedriver/event.php';
+						app.ajax.post(url, {
+							'act': 'quit',
+							'binding': plus.device.uuid
+						}, function(rs) {
+							//console.log(JSON.stringify(rs));
+							if(rs.result == 1) {
+								plus.storage.clear();
+								mui.openWindow('home.html', 'welcome');
+							}
+
+						});
+
+					}
+
+				});
+
+			});
+
+			function quit() {
+
+			}
+
+			function init() {
+				var url = host + 'timedriver/event.php';
+				app.ajax.post(url, {
+					'act': 'myteam',
+					'binding': plus.device.uuid
+				}, function(rs) {
+					//console.log(JSON.stringify(rs));
+					var html = '';
+					for(var i = 0; i < rs.result.length; i++) {
+						html += '<li class=\"mui-table-view-cell\"><div class=\"mui-table\"><div class=\"mui-table-cell mui-col-xs-2\">';
+						html += '<p class=\"time\">' + rs.result[i].date + '</p></div>';
+						if(rs.result[i].status == 1) {
+							html += '<div class=\"mui-table-cell mui-col-xs-10\" style=\"padding-left:17px;\"><p>用时' + formatSeconds(rs.result[i].count) + '完成『' + rs.result[i].name + '』 获得' + parseInt(rs.result[i].score) + '分钟加时</p></div></div></li>';
+						} else if(rs.result[i].status == 0) {
+							html += '<div class=\"mui-table-cell mui-col-xs-10\" style=\"padding-left:17px;\"><p>报名参加『' + rs.result[i].name + '』</p></div></div></li>';
+						} else if(rs.result[i].status == -1) {
+							html += '<div class=\"mui-table-cell mui-col-xs-10\" style=\"padding-left:17px;\"><p>挑战『' + rs.result[i].name + '』失败</p></div></div></li>';
+						}
+					}
+					document.querySelector('#content').innerHTML = html;
+					creator = rs.creator;
+					document.querySelector('#quit').innerHTML = (rs.creator) ? '解散' : '退出';
+
+				});
+			}
+
+			function formatSeconds(value) {
+				var theTime = parseInt(value); // 秒 
+				var theTime1 = 0; // 分 
+				var theTime2 = 0; // 小时 
+				// alert(theTime); 
+				if(theTime > 60) {
+					theTime1 = parseInt(theTime / 60);
+					theTime = parseInt(theTime % 60);
+					// alert(theTime1+"-"+theTime); 
+					if(theTime1 > 60) {
+						theTime2 = parseInt(theTime1 / 60);
+						theTime1 = parseInt(theTime1 % 60);
+					}
+				}
+				thetime = (parseInt(theTime) < 10) ? "0" + parseInt(theTime) : "" + parseInt(theTime);
+				var result = thetime + "''";
+				if(theTime1 > 0) {
+					thetime1 = (parseInt(theTime1) < 10) ? "0" + parseInt(theTime1) : "" + parseInt(theTime1);
+					result = "" + thetime1 + "'" + result;
+				}
+				if(theTime2 > 0) {
+					thetime2 = (parseInt(theTime2) < 10) ? "0" + parseInt(theTime2) : "" + parseInt(theTime2);
+					result = "" + thetime2 + ":" + result;
+				}
+				return result;
+			}
+		</script>
+	</body>
+
+</html>

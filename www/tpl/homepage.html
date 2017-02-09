@@ -1,0 +1,267 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,.mui-content{
+				background: url(../img/bg.jpg) no-repeat;
+				background-size:cover;
+			}
+			.mui-slider-item img{height:188px;}
+			/*.mui-table-view-cell:after{background: transparent;}
+			.mui-table-view-cell{width:25%;text-align: center;color:#fff;padding:11px 0px; background-color: #1c1b20;}
+			.mui-table-view-cell.mui-active{background: #1c1b20;}*/
+			
+			.card{width:94%;height:150px;border-radius: 0;background: #424045;margin-top:20px;}
+			.card_content{width:60%;float: left;padding-left:20px;margin-top:30px;margin-left:-25px;}
+			.line_style{margin:10px auto;width:60px;height:1px;background: #666;}
+			.card_img{width:40%;float: left;}
+			.card_img .act_img{width:160px;height:80px;margin-top:35px;}
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+			     border-top:0; 
+			     border-bottom:0; 
+			}
+			.mui-input-group{background-color: transparent;}
+			
+			/*下面这段css后面要去掉*/
+			.mui-control-content {
+				min-height:320px;
+			}
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+			.mui-table-view-cell{
+				width:100%;
+				color:#000;
+				background-color: transparent;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<div class="mui-input-row mui-search" style="width:76%;margin-left:12%;">
+			    <input type="search" class="mui-input-clear" placeholder="搜你想要的" style="background-color: #666666;">
+			</div>
+		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat">
+				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
+				<span class="mui-tab-label">消息</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-contact">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">通讯录</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-map">
+				<span class="mui-icon mui-icon-gear"></span>
+				<span class="mui-tab-label">设置</span>
+			</a>
+		</nav>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div class="mui-slider">
+					<div class="mui-slider-group mui-slider-loop">
+					   <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../img/title_1.png" /></a></div>
+					   <div class="mui-slider-item"><a href="#"><img src="../img/title_1.png" /></a></div>
+					   <div class="mui-slider-item"><a href="#"><img src="../img/title_1.png" /></a></div>
+					   <div class="mui-slider-item"><a href="#"><img src="../img/title_1.png" /></a></div>
+					   <div class="mui-slider-item"><a href="#"><img src="../img/title_1.png" /></a></div>
+					   <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="../img/title_1.png" /></a></div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+				<div class="mui-input-group">
+					<button class="mui-btn mui-btn-outlined" style="width:90px;position:fixed;margin-top:-160px;border:0;color:#fff;background:#1c1b20;border-radius: 20px;margin-left:-10px;">输入口令</button>
+				</div>
+				<div id="slider" class="mui-slider">
+					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #1c1b20;color:#fff;">
+						<a class="mui-control-item" href="#item1mobile">
+							推荐
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							分类1
+						</a>
+						<a class="mui-control-item" href="#item3mobile">
+							分类2
+						</a>
+					</div>
+					<!--滑动时底边效果-->
+					<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+					<div class="mui-slider-group">
+						<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+							<div id="scroll1" class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/bg.jpg" class="act_img"/>
+										</div>
+									</div>
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/title_1.png" class="act_img"/>
+										</div>
+									</div>
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/title_1.png" class="act_img"/>
+										</div>
+									</div>
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/title_1.png" class="act_img"/>
+										</div>
+									</div>
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/title_1.png" class="act_img"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="item2mobile" class="mui-slider-item mui-control-content">
+							<div id="scroll2" class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<!--<div class="mui-loading">
+										<div class="mui-spinner">
+										</div>
+									</div>-->
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/title_1.png" class="act_img"/>
+										</div>
+									</div>
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/title_1.png" class="act_img"/>
+										</div>
+									</div>
+								</div>
+							</div>
+	
+						</div>
+						<div id="item3mobile" class="mui-slider-item mui-control-content">
+							<div id="scroll3" class="mui-scroll-wrapper">
+								<div class="mui-scroll">
+									<!--<div class="mui-loading">
+										<div class="mui-spinner">
+										</div>
+									</div>-->
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/title_1.png" class="act_img"/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var gallery = mui('.mui-slider');
+			//两个都运用的slider元素定义一个另一个也会起作用
+//			gallery.slider({
+//			  interval:2000//自动轮播周期，若为0则不自动播放，默认为0；
+//			});
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+//				var html2 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第二个选项卡子项-1</li><li class="mui-table-view-cell">第二个选项卡子项-2</li><li class="mui-table-view-cell">第二个选项卡子项-3</li><li class="mui-table-view-cell">第二个选项卡子项-4</li><li class="mui-table-view-cell">第二个选项卡子项-5</li></ul>';
+//				var html3 = '<ul class="mui-table-view"><li class="mui-table-view-cell">第三个选项卡子项-1</li><li class="mui-table-view-cell">第三个选项卡子项-2</li><li class="mui-table-view-cell">第三个选项卡子项-3</li><li class="mui-table-view-cell">第三个选项卡子项-4</li><li class="mui-table-view-cell">第三个选项卡子项-5</li></ul>';
+//				var item2 = document.getElementById('item2mobile');
+//				var item3 = document.getElementById('item3mobile');
+//				document.getElementById('slider').addEventListener('slide', function(e) {
+//					if (e.detail.slideNumber === 1) {
+//						if (item2.querySelector('.mui-loading')) {
+//							setTimeout(function() {
+//								item2.querySelector('.mui-scroll').innerHTML = html2;
+//							}, 500);
+//						}
+//					} else if (e.detail.slideNumber === 2) {
+//						if (item3.querySelector('.mui-loading')) {
+//							setTimeout(function() {
+//								item3.querySelector('.mui-scroll').innerHTML = html3;
+//							}, 500);
+//						}
+//					}
+//				});
+				var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
+				$('.mui-input-group').on('change', 'input', function() {
+					if (this.checked) {
+						sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
+						//force repaint
+						sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
+					}
+				});
+			})(mui);
+		</script>
+	</body>
+
+</html>
