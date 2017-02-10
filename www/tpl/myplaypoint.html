@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,.mui-content{background: #1c1b20;color:#fff;}
+			.mui-card{background: #424045;}
+			.mui-card-content{background:#424045;padding:15px;}
+			.point{font-size:30px;color:#03FFFF;padding-top:20px;}
+			.mui-table-view-condensed:before{
+				background-color: transparent;
+			}
+			.mui-table-view-cell:after {
+			    left: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">我的玩点</h1>
+		</header>
+		<div class="mui-content">
+		    <div class="mui-card">
+		    	<div class="mui-card-content">
+		    		<div class="">
+		    			当前玩点
+		    			<span class="mui-pull-right">玩点说明</span>
+		    		</div>
+		    		<div class="point">12000</div>
+		    	</div>
+		    </div>
+		    <ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" style="background: #424045;margin-top:40px;">
+		        <li class="mui-table-view-cell">
+		                <div class="mui-table-cell viewcell">
+		                    <p class="time">玩点明细</p>
+		                </div>
+		        </li>
+		        <li class="mui-table-view-cell">
+		            <div class="mui-table">
+		                <div class="mui-table-cell mui-col-xs-6">
+		                    <p class="time">每日登录</p>
+		                </div>
+		                <div class="mui-table-cell mui-col-xs-6">
+		                    <p class="mui-ellipsis doc">+10</p>
+		                    <p class="mui-h5 success">2017-02-09&nbsp;17:09</p>
+		                </div>
+		            </div>
+		        </li>
+		        <li class="mui-table-view-cell">
+		            <div class="mui-table">
+		                <div class="mui-table-cell mui-col-xs-6">
+		                    <p class="time">发起游戏</p>
+		                </div>
+		                <div class="mui-table-cell mui-col-xs-6">
+		                    <p class="mui-ellipsis doc1">-1000</p>
+		                    <p class="mui-h5 success">2017-02-06&nbsp;17:09</p>
+		                </div>
+		            </div>
+		        </li>
+		    </ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>

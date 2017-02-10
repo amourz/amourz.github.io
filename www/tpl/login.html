@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>帐号登录</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/login.css"/>
+		<style type="text/css">
+			body,.mui-content{background: #1C1B20;}
+			.mui-btn{
+				width:95%;
+				padding: 10px;
+				margin: 20px auto 0 15px;
+				clear: both;
+				background-color:#424045;
+				overflow: hidden;
+				color:#fff;
+				border:none;
+			}
+			.mui-card{background: transparent;}
+			.mui-input-group{background: transparent;}
+			label{color:gray;font-size:16px;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class=" mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">帐号登录</h1>
+		</header>
+		
+		<div class="mui-content">
+			<div class="mui-card" style="padding:20px 30px 20px 15px;border-radius:5px;margin-top:70px;">
+				 <form class="mui-input-group">
+				    <div class="mui-input-row">
+				        <label>帐&nbsp;&nbsp;&nbsp;号</label>
+				    	<input type="number" class="input mui-input-clear" id="username" placeholder="请输入11位手机号码">
+				    </div>
+				    <div class="mui-input-row"">
+				        <label>密&nbsp;&nbsp;&nbsp;码</label>
+				        <input type="password" class="mui-input-password" id="password" placeholder="请输入至少6位密码">
+				    </div>
+				    <div class="mui-button-row">
+						<button type="button" id='confirmBtn' class="mui-btn mui-btn-block login-btn">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+					</div>
+				    <div class="mui-input-row" style="width:46%;margin-left:32%;line-height:40px;margin-top:30px;color:#fff;">
+						<a href="../tpl/register.html" class="openPage" data-title="用户注册" data-url="register.html" style="margin:0 auto;color:#fff;">注册帐号</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../tpl/register.html" class="openPage" data-title="忘记密码" data-url="findpwd.html" style="color:#fff;">忘记密码</a>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			document.getElementById("confirmBtn").addEventListener('tap', function() {
+				var btnArray = [ '进入游戏吧'];
+				mui.confirm('获得新手福利：1000玩点','欢迎你，玩星人', btnArray, function(e) {
+					
+				})
+			});
+		</script>
+	</body>
+
+</html>

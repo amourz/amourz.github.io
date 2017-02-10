@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<style type="text/css">
+			body,.mui-content{background: #1C1B20;color: #fff;}
+			.mui-input-group{background: transparent;text-align: center;}
+			.mui-input-group:before {
+			    background-color: transparent;
+			}
+			.mui-input-group:after {
+			    background-color: transparent;
+			}
+			.mui-table-view:before {
+			    background-color: transparent;
+			}
+			.mui-table-view:after {
+			    left:15px;
+			}
+			.btn{height:80px;line-height:80px;font-size:1.2rem;color:#03FFFF;border:0;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">关卡列表</h1>
+			<a class="mui-icon iconfont icon-add mui-pull-right"></a>
+		</header>
+		<div class="mui-content">
+		    <ul class="mui-table-view" style="background: transparent;margin-top:50px;">
+				<li class="mui-table-view-cell">
+					关卡1&nbsp;&nbsp;│&nbsp;&nbsp;杯水传情
+				</li>
+				<li class="mui-table-view-cell">
+					关卡2&nbsp;&nbsp;│&nbsp;&nbsp;杯水传情
+				</li>
+			</ul>
+			
+			<div class="mui-input-group">
+				<button class="mui-btn mui-btn-outlined" style="width:40%;height:30px;background:#424045;color:#F0F0F0;border:0;margin-top:20%;">预览游戏页面</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>
