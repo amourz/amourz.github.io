@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
 		<style type="text/css">
 			body,.mui-content{background: #1C1B20;color:#fff;}
-			.mui-input-group{background: transparent;text-align: center;}
+			.mui-input-group{background: transparent;text-align: center;margin-top:20px;font-size:12px;}
 			.mui-input-group:before {
 			    background-color: transparent;
 			}
@@ -17,37 +17,75 @@
 			    background-color: transparent;
 			}
 			.btn{height:80px;line-height:80px;font-size:1.2rem;color:#03FFFF;border:0;}
+			.mui-slider-handle a{color:#fff;}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background: transparent;">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
 			<h1 class="mui-title" style="color:#fff;">设置裁判</h1>
 		</header>
 		<div class="mui-content">
 		    <div class="mui-input-group" style="text-align: center;">
-		    	<button class="mui-btn mui-btn-outlined btn"><span class="mui-icon iconfont icon-add" style="padding-right:5px;"></span>添加裁判</button>
+		    	<button class="mui-btn mui-btn-link btn"><span class="mui-icon iconfont icon-add" style="padding-right:5px;"></span>添加裁判</button>
 		    </div>
 		    
-		   <ul class="mui-table-view" style="background: transparent;">
+		   <ul id="OA_task_1" class="mui-table-view" style="background: transparent;">
 				<li class="mui-table-view-cell">
-					海蛏子&nbsp;&nbsp;│&nbsp;&nbsp;12345678901
-					<a class="mui-pull-right mui-icon iconfont icon-edit"></a>
+					<div class="mui-slider-left mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle judgeinfo" style="background: transparent;color: #fff;">
+						<a class="mui-navigate-right">
+							海蛏子&nbsp;&nbsp;│&nbsp;&nbsp;12345678901
+						</a>
+					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					海蛏子&nbsp;&nbsp;│&nbsp;&nbsp;12345678901
-					<a class="mui-pull-right mui-icon iconfont icon-edit"></a>
+					<div class="mui-slider-left mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle" style="background: transparent;color: #fff;">
+						<a class="mui-navigate-right">
+							海蛏子&nbsp;&nbsp;│&nbsp;&nbsp;12345678901
+						</a>
+					</div>
 				</li>
 			</ul>
 			
 			<div class="mui-input-group">
-				<button class="mui-btn mui-btn-outlined" style="width:100px;height:30px;background:#424045;color:#F0F0F0;border:0;margin-top:10%;">完&nbsp;&nbsp;成</button>
+				左右滑动删除单条信息	
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
 			mui.init();
+			(function($) {
+				//第一个demo，拖拽后显示操作图标，点击操作图标删除元素；
+				$('#OA_task_1').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					mui.confirm('确认删除该裁判？', '提示', btnArray, function(e) {
+						if (e.index == 0) {
+							li.parentNode.removeChild(li);
+						} else {
+							setTimeout(function() {
+								$.swipeoutClose(li);
+							}, 0);
+						}
+					});
+				});
+				var btnArray = ['确认', '取消'];
+			})(mui);
 		</script>
 	</body>
 

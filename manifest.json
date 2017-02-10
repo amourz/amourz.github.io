@@ -10,7 +10,7 @@
 	"icons": {
 		"72": "icon.png"
 	},
-	"launch_path": "www/tpl/gamebaseinformation.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
 	"developer": {
 		"name": "",/*开发者名称*/
 		"email": "",/*开发者邮箱地址*/
@@ -669,7 +669,9 @@
 					"www/js/mui.min.js",
 					"www/css/mui.min.css",
 					"www/fonts/mui.ttf",
-					"www/img/title_1.png"
+					"www/img/title_1.png",
+					"www/fonts/iconfont.ttf",
+					"www/css/iconfont.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -740,6 +742,50 @@
 				"priority": 0
 			},
 			"www/tpl/gamebaseinformation.html": {
+				"resources": [
+					"www/js/mui.min.js",
+					"www/css/mui.min.css",
+					"www/fonts/mui.ttf",
+					"www/fonts/iconfont.ttf",
+					"www/css/iconfont.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"www/tpl/login.html": {
+				"resources": [
+					"www/js/mui.min.js",
+					"www/css/mui.min.css",
+					"www/js/common.js",
+					"www/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"www/tpl/editgamedescript.html": {
+				"resources": [
+					"www/fonts/iconfont.ttf",
+					"www/js/mui.min.js",
+					"www/img/title_1.png",
+					"www/css/mui.min.css",
+					"www/css/iconfont.css",
+					"www/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"www/tpl/levellist.html": {
+				"resources": [
+					"www/fonts/iconfont.ttf",
+					"www/js/mui.min.js",
+					"www/css/mui.min.css",
+					"www/css/iconfont.css",
+					"www/fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"www/tpl/makeadvice.html": {
 				"resources": [
 					"www/js/mui.min.js",
 					"www/css/mui.min.css",

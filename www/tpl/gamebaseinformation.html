@@ -6,40 +6,78 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
 		<style type="text/css">
 			body,.mui-content{background: #1c1b20;color:#fff;}
-			.mui-input-row{text-align: center;}
+			.mui-input-row{text-align: center;margin:20px auto;}
+			.mui-input-row input{border-radius:5px;border:0;color:#000;padding-left:5px;line-height:20px;font-size:14px;}
+			.mui-btn {
+				display: block;
+				width: 120px;
+				margin: 10px auto;
+			}
+			#info {
+				padding: 20px 10px;
+			}
+			.judge_add{padding:0;font-size: 26px;border:0;background: transparent;color: #fff;}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background: transparent;">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
 			<h1 class="mui-title" style="color:#fff;">游戏基本信息设置</h1>
 		</header>
 		<div class="mui-content">
 			<div class="mui-input-row" style="text-align: center;">
 				<span>游戏名称：</span>
-				<input type="" name="" id="" value=""  style="width:60%;"/>
+				<input type="" name="" id="" value="" placeholder="单行输入" style="width:60%;"/>
 			</div>
 			<div class="mui-input-row">
 				<span>队伍数量：</span>
-				<input type="" name="" id="" value=""  style="width:55%;"/>
+				<input type="" name="" id="" value="" placeholder="单行输入"  style="width:54%;"/>
 				<span>队</span>
 			</div>
 			<div class="mui-input-row">
 				<span>玩家人数：</span>
-				<input type="" name="" id="" value=""  style="width:55%;"/>
+				<input type="" name="" id="" value="" placeholder="输入最大参与人数"  style="width:54%;"/>
 				<span>人</span>
 			</div>
 			<div class="mui-input-row">
 				<span>游戏城市：</span>
-				<input type="" name="" id="" value=""  style="width:60%;"/>
+				<input type="" name="" id="" value="" placeholder="输入游戏进行城市"  style="width:60%;"/>
+			</div>
+			<div class="mui-input-row">
+				<span>起止时间：</span>
+				<input type="" name="" id="" value="" placeholder="开始时间"  style="width:27.5%;"/>
+				<span>-</span>
+				<input type="" name="" id="" value="" placeholder="结束时间"  style="width:27.5%;"/>
+			</div>
+			<div class="mui-input-row">
+				<span>设置裁判：</span>
+				<input type="" name="" id="" value="" placeholder="选择裁判" class="mui-icon iconfont icon-add" style="color:#fff;width:53%;"/>
+				<button class="mui-icon iconfont icon-add judge_add"></button>
+			</div>
+			
+			<div class="mui-content-padded" style="margin-top: 25%;text-align: center;">
+				<button id='confirmBtn' type="button" class="mui-btn mui-btn-outlined button" style="color:#fff;border:0;background: #424045;">保&nbsp;&nbsp;&nbsp;存</button>
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			document.getElementById("confirmBtn").addEventListener('tap', function() {
+				var btnArray = [ '是','否，返回游戏列表'];
+				mui.confirm('游戏保存设置成功，是否继续进行设置任务关卡','提示', btnArray, function(e) {
+					if (e.index == 1) {
+						info.innerText = '';
+					} else {
+						info.innerText = ''
+					}
+				})
+			});
 		</script>
 	</body>
 

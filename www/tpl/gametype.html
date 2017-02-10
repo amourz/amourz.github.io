@@ -27,14 +27,27 @@
 			     border-top:0; 
 			     border-bottom:0; 
 			}
+			.mui-bar {
+			    background-color: transparent;
+			    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0);
+			    box-shadow: 0 0 1px rgba(0,0,0,0);
+			}
+			.keep{width:30%;border:0;border-radius:10px;background: #424045;color:#A9A9A9;}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background: transparent;">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
 			<h1 class="mui-title" style="color:#fff;">设置关卡</h1>
 		</header>
+		<nav class="mui-bar mui-bar-tab">
+			<div class="mui-button-row">
+				<button class="mui-btn mui-btn-outlined keep">确&nbsp;&nbsp;&nbsp;认</button>
+			</div>
+		</nav>
 		<div class="mui-content">
 		    <div id="slider" class="mui-slider">
 					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #1c1b20;color:#fff;">

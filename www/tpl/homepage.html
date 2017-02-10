@@ -6,16 +6,13 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
 		<style type="text/css">
 			body,.mui-content{
-				background: url(../img/bg.jpg) no-repeat;
-				background-size:cover;
+				background: #1C1B20;
 			}
+			.command{width:90px;position:fixed;margin-top:-160px;border:0;color:#fff;background:#424045;border-radius: 20px;margin-left:-10px;}
 			.mui-slider-item img{height:188px;}
-			/*.mui-table-view-cell:after{background: transparent;}
-			.mui-table-view-cell{width:25%;text-align: center;color:#fff;padding:11px 0px; background-color: #1c1b20;}
-			.mui-table-view-cell.mui-active{background: #1c1b20;}*/
-			
 			.card{width:94%;height:150px;border-radius: 0;background: #424045;margin-top:20px;}
 			.card_content{width:60%;float: left;padding-left:20px;margin-top:30px;margin-left:-25px;}
 			.line_style{margin:10px auto;width:60px;height:1px;background: #666;}
@@ -26,44 +23,42 @@
 			     border-bottom:0; 
 			}
 			.mui-input-group{background-color: transparent;}
-			
-			/*下面这段css后面要去掉*/
 			.mui-control-content {
 				min-height:320px;
 			}
 			.mui-control-content .mui-loading {
 				margin-top: 50px;
 			}
-			.mui-table-view-cell{
-				width:100%;
-				color:#000;
-				background-color: transparent;
+			.mui-bar {
+			    background-color: transparent;
+			    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0);
+			    box-shadow: 0 0 1px rgba(0,0,0,0);
+			}   
+			.mui-bar-tab .mui-tab-item.mui-active {
+			    color:#03FFFF;
 			}
 		</style>
 	</head>
 
 	<body>
 		<header class="mui-bar mui-bar-nav" style="background: transparent;">
-			<div class="mui-input-row mui-search" style="width:76%;margin-left:12%;">
+			<div class="mui-input-row mui-search" style="width:76%;margin-left:5%;float: left;">
 			    <input type="search" class="mui-input-clear" placeholder="搜你想要的" style="background-color: #666666;">
-			</div>
+			 </div>
+			 <button class="mui-btn mui-btn-outlined" style="width:10%;background: transparent;color:#fff;height:28px;padding:5px 1px;margin-left:5px;border:0;color:#A9A9A9;background: #424045;">确认</button>
 		</header>
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item mui-active" href="#tabbar">
-				<span class="mui-icon mui-icon-home"></span>
+			<a class="mui-tab-item mui-active" href="">
+				<span class="mui-icon iconfont icon-home"></span>
 				<span class="mui-tab-label">首页</span>
 			</a>
-			<a class="mui-tab-item" href="#tabbar-with-chat">
-				<span class="mui-icon mui-icon-email"><span class="mui-badge">9</span></span>
-				<span class="mui-tab-label">消息</span>
+			<a class="mui-tab-item" href="">
+				<span class="mui-icon iconfont icon-add" style="font-size:40px;"></span>
+				<span class="mui-tab-label"></span>
 			</a>
-			<a class="mui-tab-item" href="#tabbar-with-contact">
-				<span class="mui-icon mui-icon-contact"></span>
-				<span class="mui-tab-label">通讯录</span>
-			</a>
-			<a class="mui-tab-item" href="#tabbar-with-map">
-				<span class="mui-icon mui-icon-gear"></span>
-				<span class="mui-tab-label">设置</span>
+			<a class="mui-tab-item" href="">
+				<span class="mui-icon iconfont icon-me"></span>
+				<span class="mui-tab-label">我的</span>
 			</a>
 		</nav>
 		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
@@ -85,10 +80,10 @@
 					</div>
 				</div>
 				<div class="mui-input-group">
-					<button class="mui-btn mui-btn-outlined" style="width:90px;position:fixed;margin-top:-160px;border:0;color:#fff;background:#1c1b20;border-radius: 20px;margin-left:-10px;">输入口令</button>
+					<button class="mui-btn mui-btn-outlined command">输入口令</button>
 				</div>
 				<div id="slider" class="mui-slider">
-					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #1c1b20;color:#fff;">
+					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #424045;color:#fff;">
 						<a class="mui-control-item" href="#item1mobile">
 							推荐
 						</a>
