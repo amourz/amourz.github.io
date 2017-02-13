@@ -630,6 +630,16 @@
       "www/css/mui.min.css",
       "www/css/iconfont.css",
       "www/fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "www/tpl/act_setting.html": {
+    "resources": [
+      "www/fonts/iconfont.ttf",
+      "www/js/mui.min.js",
+      "www/css/mui.min.css",
+      "www/css/iconfont.css",
+      "www/fonts/mui.ttf"
     ]
   }
 }

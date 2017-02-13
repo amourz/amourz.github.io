@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<style type="text/css">
+			body,.mui-content{background: #1c1b20;color:#fff;}
+			.mui-input-row{text-align: center;margin:20px auto;}
+			.mui-input-row input{border-radius:5px;border:0;color:#000;padding-left:5px;line-height:20px;font-size:14px;}
+			.mui-btn {
+				display: block;
+				width: 120px;
+				margin: 10px auto;
+			}
+			#info {
+				padding: 20px 10px;
+			}
+			.mui-number{padding:0 0;}
+			.judge_add{padding:0;font-size: 26px;border:0;background: transparent;color: #fff;}
+			.mui-input-row label {
+			    width:100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: #1C1B20;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">活动基本信息设置</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-input-row" style="text-align: center;">
+				<span>活动名称：</span>
+				<input type="" name="name" id="name" value="" placeholder="" style="width:60%;"/>
+			</div>
+			<div class="mui-input-row" style="text-align: center;">
+				<span style="display: block;float: left;margin-left:30px;">活动简介：</span>
+				<textarea row="3" type="" name="desc" id="desc" value="" placeholder="" style="width:60%;margin-left: -15px;">
+				</textarea>
+			</div>
+			<div class="mui-input-row" style="height:30px;position: relative;margin-left:-60%;">
+					<span>是否公开：</span>
+					<div style="height:30px;margin-top:-30px;margin-left:60%;position: absolute;"><label>公开<input name="public" type="radio" checked="checked"></label>
+					<label>私密<input name="public" type="radio"></label></div>
+			</div>
+			<div class="mui-input-row" style="height:30px;margin-left:-60%;">
+				<span>队伍数量：</span>
+				<div class="mui-numbox" data-numbox-min='1' data-numbox-max='8' style="width:35%;height:25px;position: absolute;">
+					<button class="mui-btn mui-numbox-btn-minus" type="button" style="margin-top:0px;">-</button>
+					<input class="mui-numbox-input" type="number" id="num"/>
+					<button class="mui-btn mui-numbox-btn-plus" type="button" style="margin-top:0px;">+</button>
+				</div>
+			</div>
+			<div class="mui-input-row" style="height:30px;margin-left:-60%;">
+				<span>玩家人数：</span>
+				<div class="mui-numbox" data-numbox-min='1' style="width:35%;height:25px;position: absolute;">
+					<button class="mui-btn mui-numbox-btn-minus" type="button" style="margin-top:0px;">-</button>
+					<input class="mui-numbox-input" type="number" id="num"/>
+					<button class="mui-btn mui-numbox-btn-plus" type="button" style="margin-top:0px;">+</button>
+				</div>
+			</div>
+			<div class="mui-input-row" style="margin-left: -10px;">
+				<span>活动城市：</span>
+				<button type="" name="" id="city" value="" placeholder="输入游戏进行城市"  style="width:55%;height:25px;margin-left:5px;"/>
+			</div>
+			<div class="mui-input-row" style="margin-left: -10px;">
+				<span>开始时间：</span>
+				<button type="" name="" id="" value="" placeholder=""  style="width:55%;height:25px;margin-left:5px;"/>
+				</div>
+			<div class="mui-input-row" style="margin-left: -10px;">
+				<span>结束时间：</span>
+				<button type="" name="" id="" value="" placeholder=""  style="width:55%;height:25px;margin-left:5px;"/>
+				</div>	
+			<div class="mui-input-row" style="margin-left: -10px;">
+				<span>设置裁判：</span>
+				<button type="" name="" id="" value="" placeholder="选择裁判" class="mui-icon iconfont icon-add" style="height:25px;color:#fff;width:49%;margin-left:5px;"/>
+				<button class="mui-icon iconfont icon-add judge_add"></button>
+			</div>
+			
+			<div class="mui-content-padded" style="margin-top: 15%;text-align: center;">
+				<button id='confirmBtn' type="button" class="mui-btn mui-btn-outlined button" style="color:#fff;border:0;background: #424045;">保&nbsp;&nbsp;&nbsp;存</button>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+			<script>
+		(function($) {
+			$.init();
+			//var result = $('#result')[0];
+			var btns = $('.btn');
+			btns.each(function(i, btn) {
+				btn.addEventListener('tap', function() {
+					var optionsJson = this.getAttribute('data-options') || '{}';
+					var options = JSON.parse(optionsJson);
+					var id = this.getAttribute('id');
+					var picker = new $.DtPicker(options);
+					picker.show(function(rs) {
+						//result.innerText = '选择结果: ' + rs.text;
+						console.log(rs.text);
+						document.getElementById(id).innerText = rs.text;
+						picker.dispose();
+					});
+				}, false);
+			});
+		})(mui);
+	</script>
+
+	<script type="text/javascript" charset="utf-8">
+		mui.init({
+			swipeBack: true
+		});
+		mui('body').on('tap', '#create', function(e) {
+			mui('#create').button('正在提交');
+			var name = document.getElementById('name').value;
+			var desc = document.getElementById('desc').value;
+			var num = document.getElementById('num').value;
+			var start = document.getElementById('start').innerText;
+			var end = document.getElementById('end').innerText;
+			var url = host + 'timedriver/event.php';
+			if(!name || name.length == 0) {
+				app.toast('请输入活动名称');
+				return false;
+			}
+			if(!desc || desc.length == 0) {
+				app.toast('请输入活动简介');
+				return false;
+			}
+			//console.log(start);
+			if(start == '选择开始时间') {
+				app.toast('请选择活动开始时间');
+				return false;
+			}
+			if(end == '选择结束时间') {
+				app.toast('请选择活动结束时间');
+				return false;
+			}
+			app.ajax.post(url, {
+				'act': 'new_activity',
+				'name': name,
+				'desc': desc,
+				'start': start,
+				'end': end,
+				'num': num,
+				'owner': plus.device.uuid
+			}, function(rs) {
+				var id = rs.id;
+				//var selfwv=plus.webview.currentWebview();
+				//plus.webview.close(selfwv);
+				mui.openWindow({
+					url: 'activity_ok.html?id=' + id,
+					id: 'activity_ok'
+				});
+			});
+		});
+	</script>
+
+		<script type="text/javascript">
+			
+			document.getElementById("confirmBtn").addEventListener('tap', function() {
+				var btnArray = [ '是','否，返回游戏列表'];
+				mui.confirm('游戏保存设置成功，是否继续进行设置任务关卡','提示', btnArray, function(e) {
+					if (e.index == 1) {
+						info.innerText = '';
+					} else {
+						info.innerText = ''
+					}
+				})
+			});
+		</script>
+	</body>
+
+</html>
