@@ -375,7 +375,8 @@
 					"www/css/mui.min.css",
 					"www/js/common.js",
 					"www/img/bluefire.png",
-					"www/css/csshake.min.css"
+					"www/css/csshake.min.css",
+					"www/tpl/main_sub.html"
 				],
 				"refer": [
 					"www/tpl/chapter.html",

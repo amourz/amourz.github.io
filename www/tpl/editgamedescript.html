@@ -11,12 +11,15 @@
 			body,.mui-content{background: #1C1B20;color:#fff;}
 			.gamename{width:90%;height:40px;line-height:40px;margin:0 auto;border-bottom: 1px solid  #666;color:#03FFFF;}
 			.tool{width:90%;margin:0 auto;padding-top:10px;}
-			.keep{width:20%;border:0;border-radius:10px;margin-top:10px;background: #424045;color:#A9A9A9;}
+			.tool input{border:0;background: transparent;padding-left:0;border-radius: 0;}
+			.tool1 input{border-bottom: 1px solid #666666;}
+			.tool textarea{border:0;background: transparent;color:#fff;padding-left:0;}
+			.keep{width:20%;border:0;border-radius:10px;margin:10px auto;background: #424045;color:#A9A9A9;}
 		</style>
 	</head>
 
 	<body>
-		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+		<header class="mui-bar mui-bar-nav" style="background: #1C1B20;">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
 			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
 			</span>
@@ -26,22 +29,26 @@
 		    <div class="">
 		    	<img src="../img/title_1.png" style="height:188px;"/>
 		    </div>
-		    <div class="gamename">杯水传情<a class="mui-icon iconfont icon-edit mui-pull-right" style="line-height: 40px;"></a></div>
+		    <div class="tool tool1">
+		    	<input type="text" name="" id="" value="杯水传情" class=""/>
+		    </div>
 		    <div class="tool">
 		    	<p>参与人数</p>
-		    	<p>5-10人<a class="mui-icon iconfont icon-edit mui-pull-right" style="line-height: 30px;"></a></p>
+		    	<input type="text" name="" id="" value="5-10人" class=""/>
 		    </div>
 		    <div class="tool">
 		    	<p>游戏道具</p>
-		    	<p>水杯  纸<a class="mui-icon iconfont icon-edit mui-pull-right" style="line-height: 30px;"></a></p>
+		    	<input type="text" name="" id="" value="水杯 、纸" class=""/>
 		    </div>
 		    <div class="tool">
 		    	<p>游戏规则</p>
-		    	<p>由参赛者赛者组队参加游戏，挑战关卡成功后，由该关卡的定点裁判进行扫码判定，给与时间奖励。按完成游戏的时间进行排位<a class="mui-icon iconfont icon-edit mui-pull-right" style="line-height: 40px;"></a></p>
+		    	<textarea id="" rows="5">由参赛者赛者组队参加游戏，挑战关卡成功后，由该关卡的定点裁判进行扫码判定，给与时间奖励。按完成游戏的时间进行排位
+		    	</textarea>
 		    </div>
-		    
-		    <div class="mui-button-row">
-		    	<button class="mui-btn mui-btn-outlined keep">保&nbsp;&nbsp;存</button>
+		    <div class="mui-bar mui-bar-tab" style="background: #1C1B20;">
+		    	<div class="mui-button-row">
+		    		<button class="mui-btn mui-btn-outlined keep">保&nbsp;&nbsp;存</button>
+		    	</div>
 		    </div>
 		</div>
 		<script src="../js/mui.min.js"></script>

@@ -9,7 +9,8 @@
 		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
 		<style type="text/css">
 			body,.mui-content{background: #1C1B20;color: #fff;}
-			.mui-input-group{background: transparent;text-align: center;}
+			.mui-input-group{background: transparent;text-align: center;margin-top:20px;font-size:12px;}
+			
 			.mui-input-group:before {
 			    background-color: transparent;
 			}
@@ -23,6 +24,8 @@
 			    left:15px;
 			}
 			.btn{height:80px;line-height:80px;font-size:1.2rem;color:#03FFFF;border:0;}
+			.mui-slider-handle a{color:#fff;}
+			.mui-slider-handle.gameinfo{background: transparent;color: #fff;}
 		</style>
 	</head>
 
@@ -35,22 +38,62 @@
 			<a class="mui-icon iconfont icon-add mui-pull-right"></a>
 		</header>
 		<div class="mui-content">
-		    <ul class="mui-table-view" style="background: transparent;margin-top:50px;">
+			<ul id="OA_task_1" class="mui-table-view" style="background: transparent;">
 				<li class="mui-table-view-cell">
-					关卡1&nbsp;&nbsp;│&nbsp;&nbsp;杯水传情
+					<div class="mui-slider-left mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle gameinfo">
+						<a class="mui-navigate-right">
+							关卡1&nbsp;&nbsp;│&nbsp;&nbsp;杯水传情
+						</a>
+					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					关卡2&nbsp;&nbsp;│&nbsp;&nbsp;杯水传情
+					<div class="mui-slider-left mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-red">删除</a>
+					</div>
+					<div class="mui-slider-handle gameinfo">
+						<a class="mui-navigate-right">
+							关卡1&nbsp;&nbsp;│&nbsp;&nbsp;杯水传情
+						</a>
+					</div>
 				</li>
 			</ul>
 			
 			<div class="mui-input-group">
-				<button class="mui-btn mui-btn-outlined" style="width:40%;height:30px;background:#424045;color:#F0F0F0;border:0;margin-top:20%;">预览游戏页面</button>
+				左右滑动删除单条关卡	
+			</div>
+			<div class="mui-input-group">
+				<button class="mui-btn mui-btn-outlined" style="width:40%;height:30px;background:#424045;color:#F0F0F0;border:0;margin-top:10%;">预览游戏页面</button>
 			</div>
 		</div>
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript">
-			mui.init()
+			mui.init();
+			(function($) {
+				//第一个demo，拖拽后显示操作图标，点击操作图标删除元素；
+				$('#OA_task_1').on('tap', '.mui-btn', function(event) {
+					var elem = this;
+					var li = elem.parentNode.parentNode;
+					mui.confirm('确认删除该游戏关卡？', '提示', btnArray, function(e) {
+						if (e.index == 0) {
+							li.parentNode.removeChild(li);
+						} else {
+							setTimeout(function() {
+								$.swipeoutClose(li);
+							}, 0);
+						}
+					});
+				});
+				var btnArray = ['确认', '取消'];
+			})(mui);
 		</script>
 	</body>
 
