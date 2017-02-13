@@ -1,0 +1,260 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: #1c1b20;
+				color: #fff;
+			}
+			.mui-bar {
+			    -webkit-box-shadow: 0 0 0 1px #424045;
+			    box-shadow: 0 0 0 1px #424045;
+			}
+			.mui-control-content {
+				min-height: 800px;
+			}
+			
+			.card {
+				width: 94%;
+				height: 150px;
+				border-radius: 0;
+				background: #424045;
+				margin-top: 20px;
+			}
+			
+			.card1 {
+				height: 160px;
+			}
+			
+			.mui-card-footer:before {
+				background: transparent;
+			}
+			
+			.card_content {
+				width: 60%;
+				float: left;
+				padding-left: 20px;
+				margin-top: 30px;
+				margin-left: -25px;
+			}
+			
+			.line_style {
+				margin: 10px auto;
+				width: 60px;
+				height: 1px;
+				background: #666;
+			}
+			
+			.card_img {
+				width: 40%;
+				float: left;
+			}
+			
+			.card_img .act_img {
+				width: 160px;
+				height: 80px;
+				margin-top: 35px;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+				border-top: 0;
+				border-bottom: 0;
+			}
+			
+			.button {
+				width: 70px;
+				height: 20px;
+				color: #fff;
+				background: #1c1b20;
+				border: 0;
+				border-radius: 0;
+				line-height: 10px;
+				border-radius: 3px;
+			}
+			
+			.group {
+				width: 320px;
+				text-align: center;
+				margin: 0 auto;
+				background: transparent;
+			}
+			
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+			
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+			    padding: 0 55px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: #1C1B20;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">我的活动</h1>
+		</header>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #424045;">
+					<div class="mui-scroll">
+						<a class="mui-control-item mui-active" href="#itemobile">
+							我创建的
+						</a>
+						<a class="mui-control-item" href="#item2mobile">
+							我参加的
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-card mui-row card card1">
+									<div class="card_content">
+										<div style="text-align: center;">CCO新零售之战</div>
+										<div class="line_style"></div>
+										<div style="text-align: center;">活动尚未开始</div>
+									</div>
+									<div class="card_img">
+										<img src="../img/bg.jpg" class="act_img"/>
+									</div>
+									<div class="mui-card-footer">
+										<div class="mui-input-group group">
+											<button class="mui-btn mui-btn-outlined button" style="">编辑</button>
+											<button class="mui-btn mui-btn-outlined button" style="">关卡</button>
+											<button class="mui-btn mui-btn-outlined button" style="">发布</button>
+											<button class="mui-btn mui-btn-outlined button" style="">删除</button>
+										</div>
+									</div>
+								</div>
+								<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">火热进行中，距离结束</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/bg.jpg" class="act_img"/>
+										</div>
+									</div>
+									<div class="mui-card mui-row card">
+										<div class="card_content">
+											<div style="text-align: center;">CCO新零售之战</div>
+											<div class="line_style"></div>
+											<div style="text-align: center;">距离活动开始还有</div>
+											<div style="text-align: center;">02天08:22</div>
+										</div>
+										<div class="card_img">
+											<img src="../img/bg.jpg" class="act_img"/>
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+					<div id="item2mobile" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<div class="mui-card mui-row card">
+									<div class="card_content">
+										<div style="text-align: center;">CCO新零售之战</div>
+										<div class="line_style"></div>
+										<div style="text-align: center;">火热进行中，距离结束</div>
+										<div style="text-align: center;">02天08:22</div>
+									</div>
+									<div class="card_img">
+										<img src="../img/title_1.png" class="act_img"/>
+									</div>
+								</div>
+								<div class="mui-card mui-row card">
+									<div class="card_content">
+										<div style="text-align: center;">CCO新零售之战</div>
+										<div class="line_style"></div>
+										<div style="text-align: center;">活动已结束</div>
+									</div>
+									<div class="card_img">
+										<img src="../img/title_1.png" class="act_img"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			(function($) {
+				//阻尼系数
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration: deceleration
+				});
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						$(pullRefreshEl).pullToRefresh({
+							down: {
+								
+							},
+							up: {
+								
+							}
+						});
+					});
+				});
+			})(mui);
+		</script>
+	</body>
+
+</html>

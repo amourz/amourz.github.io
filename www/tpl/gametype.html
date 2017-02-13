@@ -8,9 +8,9 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<style type="text/css">
 			body,.mui-content{background: #1C1B20;}
-			.mui-control-content {
+			/*.mui-control-content {
 				min-height:800px;
-			}
+			}*/
 			.mui-table-view .mui-media-object {
 			    line-height: 42px;
 			    max-width: 180px;
@@ -33,6 +33,9 @@
 			    box-shadow: 0 0 1px rgba(0,0,0,0);
 			}
 			.keep{width:30%;border:0;border-radius:10px;background: #424045;color:#A9A9A9;}
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+			    padding: 0 26px;
+			}
 		</style>
 	</head>
 
@@ -49,8 +52,8 @@
 			</div>
 		</nav>
 		<div class="mui-content">
-		    <div id="slider" class="mui-slider">
-					<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #1c1b20;color:#fff;">
+		    <div id="slider" class="mui-slider mui-fullscreen">
+					<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" style="background: #1c1b20;color:#fff;">
 						<a class="mui-control-item" href="#item1mobile">
 							推荐
 						</a>
