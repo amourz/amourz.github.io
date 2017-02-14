@@ -5,17 +5,21 @@
 		<meta charset="UTF-8">
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<script src="../js/mui.min.js"></script>
+		<script src="html5plus://ready"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/mui.picker.min.js"></script>
+		<script src="../js/city.data-3.js"></script>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mui.picker.min.css" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
 		<style type="text/css">
-			body,.mui-content{background: #1c1b20;color:#fff;}
+			body,.mui-content{background: #1c1b20;color:#000;}
 			.mui-input-row{text-align: center;margin:20px auto;}
+			.mui-input-row span{color:#fff;}
 			.mui-input-row input{border-radius:5px;border:0;color:#000;padding-left:5px;line-height:20px;font-size:14px;}
-			.mui-btn {
-				display: block;
-				width: 120px;
-				margin: 10px auto;
-			}
+			.button{width: 120px;margin: 10px auto;color:#fff;border:0;background: #424045;}
 			#info {
 				padding: 20px 10px;
 			}
@@ -23,6 +27,7 @@
 			.judge_add{padding:0;font-size: 26px;border:0;background: transparent;color: #fff;}
 			.mui-input-row label {
 			    width:100px;
+			    color:#fff;
 			}
 		</style>
 	</head>
@@ -35,9 +40,10 @@
 			<h1 class="mui-title" style="color:#fff;">活动基本信息设置</h1>
 		</header>
 		<div class="mui-content">
+			
 			<div class="mui-input-row" style="text-align: center;">
 				<span>活动名称：</span>
-				<input type="" name="name" id="name" value="" placeholder="" style="width:60%;"/>
+				<input type="" name="name" id="name" value="" placeholder="" style="width:60%;height:25px;"/>
 			</div>
 			<div class="mui-input-row" style="text-align: center;">
 				<span style="display: block;float: left;margin-left:30px;">活动简介：</span>
@@ -45,9 +51,11 @@
 				</textarea>
 			</div>
 			<div class="mui-input-row" style="height:30px;position: relative;margin-left:-60%;">
-					<span>是否公开：</span>
-					<div style="height:30px;margin-top:-30px;margin-left:60%;position: absolute;"><label>公开<input name="public" type="radio" checked="checked"></label>
-					<label>私密<input name="public" type="radio"></label></div>
+				<span>是否公开：</span>
+				<div style="height:30px;margin-top:-30px;margin-left:60%;position: absolute;">
+					<label><input name="public" type="radio" checked="checked">公开</label>
+					<label><input name="public" type="radio">私密</label>
+				</div>
 			</div>
 			<div class="mui-input-row" style="height:30px;margin-left:-60%;">
 				<span>队伍数量：</span>
@@ -67,28 +75,28 @@
 			</div>
 			<div class="mui-input-row" style="margin-left: -10px;">
 				<span>活动城市：</span>
-				<button type="" name="" id="city" value="" placeholder="输入游戏进行城市"  style="width:55%;height:25px;margin-left:5px;"/>
+				<button id="showCityPicker3"  style="width:55%;height:25px;margin-left:5px;"/>选择城市</button>
 			</div>
 			<div class="mui-input-row" style="margin-left: -10px;">
 				<span>开始时间：</span>
-				<button type="" name="" id="" value="" placeholder=""  style="width:55%;height:25px;margin-left:5px;"/>
+				<button id='start' data-options='{}' class="btn" style="width:55%;height:25px;margin-left:5px;"/>选择开始时间</button>
 				</div>
 			<div class="mui-input-row" style="margin-left: -10px;">
 				<span>结束时间：</span>
-				<button type="" name="" id="" value="" placeholder=""  style="width:55%;height:25px;margin-left:5px;"/>
+				<button id='end' data-options='{}' class="btn" style="width:55%;height:25px;margin-left:5px;"/>选择结束时间 </button>
 				</div>	
 			<div class="mui-input-row" style="margin-left: -10px;">
 				<span>设置裁判：</span>
 				<button type="" name="" id="" value="" placeholder="选择裁判" class="mui-icon iconfont icon-add" style="height:25px;color:#fff;width:49%;margin-left:5px;"/>
 				<button class="mui-icon iconfont icon-add judge_add"></button>
 			</div>
-			
+            
 			<div class="mui-content-padded" style="margin-top: 15%;text-align: center;">
-				<button id='confirmBtn' type="button" class="mui-btn mui-btn-outlined button" style="color:#fff;border:0;background: #424045;">保&nbsp;&nbsp;&nbsp;存</button>
+				<button id='confirmBtn' type="button" class="mui-btn mui-btn-outlined button">保&nbsp;&nbsp;&nbsp;存</button>
 			</div>
+			
 		</div>
-		<script src="../js/mui.min.js"></script>
-			<script>
+	<script>
 		(function($) {
 			$.init();
 			//var result = $('#result')[0];
@@ -98,8 +106,10 @@
 					var optionsJson = this.getAttribute('data-options') || '{}';
 					var options = JSON.parse(optionsJson);
 					var id = this.getAttribute('id');
+
 					var picker = new $.DtPicker(options);
 					picker.show(function(rs) {
+
 						//result.innerText = '选择结果: ' + rs.text;
 						console.log(rs.text);
 						document.getElementById(id).innerText = rs.text;
@@ -107,6 +117,20 @@
 					});
 				}, false);
 			});
+			var cityPicker3 = new $.PopPicker({
+						layer: 3
+					});
+					cityPicker3.setData(cityData3);
+					var showCityPickerButton = document.getElementById('showCityPicker3');
+					//var cityResult3 = document.getElementById('cityResult3');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker3.show(function(items) {
+							showCityPickerButton.innerText =(items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+							//console.log("你选择的城市是:" + (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text);
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
 		})(mui);
 	</script>
 
@@ -121,11 +145,14 @@
 			var num = document.getElementById('num').value;
 			var start = document.getElementById('start').innerText;
 			var end = document.getElementById('end').innerText;
+
 			var url = host + 'timedriver/event.php';
+
 			if(!name || name.length == 0) {
 				app.toast('请输入活动名称');
 				return false;
 			}
+
 			if(!desc || desc.length == 0) {
 				app.toast('请输入活动简介');
 				return false;
@@ -155,7 +182,9 @@
 					url: 'activity_ok.html?id=' + id,
 					id: 'activity_ok'
 				});
+
 			});
+
 		});
 	</script>
 
