@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,.mui-content{background:#1C1B20;}
+			.mui-table-view-chevron .mui-table-view-cell>a:not(.mui-btn) {
+			    margin-right: -100px;
+			}
+			.mui-table-view-cell>a:not(.mui-btn) {
+			    margin: -11px 0px;
+			}
+			.mui-table-view-cell input{width:88%;border:0;text-align:right;background: transparent;}
+			.mui-bar{-webkit-box-shadow: 0 0 0 1px #424045;
+			    box-shadow: 0 0 0 1px #424045;}
+			.nickname{width:100px;height:100px;border:1px solid #666;border-radius:100px;margin:20px auto 50px auto;text-align: center;}
+			.keep{height:44px;border:0;background:transparent;font-size: 16px;line-height:24px;color:#fff;}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: transparent;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">编辑个人资料</h1>
+			<button class="mui-pull-right keep">保存</button>
+		</header>
+	    <div class="mui-content">
+	    	<div class="nickname">
+	    		<div class="headpic">
+	    			<img src="../img/title_1.png" style="width:100px;height:100px;"/>
+	    		</div>
+	    		<div class="mui-button-row">
+	    			<button class="mui-btn mui-btn-outlined" style="border: 0;color:#fff;">上传头像</button>
+	    		</div>
+	    	</div>
+		    <ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted" style="background: transparent;color:#fff;">
+				<li class="mui-table-view-cell">
+					<a>昵称<input value="吴吴吴" class="mui-pull-right"/></a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>
+						性别<input value="女" class="mui-pull-right"/>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>
+						年龄<input value="16" class="mui-pull-right"/>
+					</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a>
+						城市<input value="温州" class="mui-pull-right"/>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>
