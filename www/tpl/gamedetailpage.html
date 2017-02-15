@@ -7,14 +7,16 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<style type="text/css">
-			body,.mui-content{background: #1c1b20;color:#fff;}
+			body,.mui-content{background: #1c1b20;color:#bbb;}
 			.mui-table-view-cell{background-color:#424045;}
 			.mui-bar {
 			    background-color: transparent;
-			    -webkit-box-shadow: 0 0 1px rgba(0,0,0,0);
-			    box-shadow: 0 0 1px rgba(0,0,0,0);
+			    -webkit-box-shadow: 0 0 0 1px #424045;
+			    box-shadow: 0 0 0 1px #424045;
 			}
-			.button{width:50%;border:0;background: #03FFFF;color: #666;}
+			.game_img{height: 188px;overflow: hidden;}
+			.mui-card-content{height:188px;overflow: hidden;}
+			.button{width:50%;border:0;background: #03FFFF;color: #555;}
 		</style>
 	</head>
 
@@ -23,7 +25,7 @@
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
 			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
 			</span>
-			<h1 class="mui-title" style="color:#fff;">cco新零售之战</h1>
+			<h1 class="mui-title" style="color:#bbb;">cco新零售之战</h1>
 		</header>
 		<nav class="mui-bar mui-bar-tab" style="background: transparent;">
 			<div class="mui-button-row">
@@ -32,7 +34,7 @@
 		</nav>
 		<div class="mui-content">
 			<div class="game_img">
-				<img src="../img/title_1.png" style="height:188px;"/>
+				<img src="../img/title_1.png" style="width:100%;"/>
 			</div>
 			<div class="mui-card" style="height:100px;background-color:#424045;">
 				<div class="mui-card-content">
@@ -46,14 +48,14 @@
 			</div>
 			<div class="mui-card" style="background: #1C1B20;">
 				<ul class="mui-table-view" style="color:#000;">
-					<li class="mui-table-view-cell" style="background-color:#424045;">
+					<li class="mui-table-view-cell" style="background-color:#424045;color: #bbb;">
 						<a href="#">关卡列表</a>
 					</li>
 					<li class="mui-table-view-cell mui-collapse">
-						<a class="mui-navigate-right" href="#" style="color:#000;">关卡1│杯水传情</a>
+						<a class="mui-navigate-right" href="#" style="color:#bbb;">关卡1│杯水传情</a>
 						<div class="mui-collapse-content">
 							<div class="mui-card-content">
-								<img src="../img/title_1.png" style="height:188px;"/>
+								<img src="../img/title_1.png" style="width: 100%;"/>
 							</div>
 							<div class="mui-card-footer">
 								游戏规则：由参赛者组队参加游戏，挑战关卡失败后，由该关卡的定点裁判进行扫码判定，给予时间奖励。按完成游戏的时间进行排位。
