@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			body,
+			.mui-content {
+				background: #1c1b20;
+				color: #fff;
+			}
+			
+			.mui-control-content {
+				min-height: 800px;
+			}
+			
+			.card {
+				width: 94%;
+				height: 150px;
+				border-radius: 0;
+				background: #424045;
+				margin-top: 20px;
+			}
+			
+			.card1 {
+				height: 160px;
+			}
+			
+			.mui-card-footer:before {
+				background: transparent;
+			}
+			
+			.card_content {
+				width: 60%;
+				float: left;
+				padding-left: 20px;
+				margin-top: 30px;
+				margin-left: -25px;
+			}
+			
+			.line_style {
+				margin: 10px auto 10px 26px;
+				width: 60px;
+				height: 1px;
+				background: #666;
+			}
+			
+			.card_img {
+				width: 40%;
+				float: left;
+			}
+			
+			.card_img .act_img {
+				width: 160px;
+				height: 80px;
+				margin-top: 35px;
+				padding-right: 20px;
+			}
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
+				border-top: 0;
+				border-bottom: 0;
+			}
+			
+			.button {
+				width: 70px;
+				height: 20px;
+				color: #fff;
+				background: #1c1b20;
+				border: 0;
+				border-radius: 0;
+				line-height: 10px;
+				border-radius: 3px;
+			}
+			
+			.group {
+				width: 320px;
+				text-align: center;
+				margin: 0 auto;
+				background: transparent;
+			}
+			
+			.mui-bar {
+				-webkit-box-shadow: 0 0 0 1px #424045;
+				box-shadow: 0 0 0 1px #424045;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" style="background: #1C1B20;">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color:#555;"></a>
+			<span style="display: inline-block;width:1px;height:25px;border-right:1px solid #262627;margin-top:10px;padding-left:10px;">				
+			</span>
+			<h1 class="mui-title" style="color:#fff;">我的活动</h1>
+		</header>
+		<div class="mui-content">
+			<div id="sliderSegmentedControl" class="mui-segmented-control mui-segmented-control-inverted" style="background: #000;color:#fff;position: fixed;z-index: 9999;">
+				<a class="mui-control-item" href="#item1" id="create">
+					我创建的
+				</a>
+				<a class="mui-control-item" href="#item2" id="join">
+					我参加的
+				</a>
+			</div>
+			<div id="item1" class="mui-hidden">
+				<div class="mui-card mui-row card card1">
+					<div class="card_content">
+						<div style="text-indent: 26px;">CCO新零售之战</div>
+						<div class="line_style"></div>
+						<div style="text-indent: 26px;">活动尚未开始</div>
+					</div>
+					<div class="card_img">
+						<img src="../img/bg.jpg" class="act_img" />
+					</div>
+					<div class="mui-card-footer">
+						<div class="mui-input-group group" style="">
+							<button class="mui-btn mui-btn-outlined button" style="">编辑</button>
+							<button class="mui-btn mui-btn-outlined button" style="">关卡</button>
+							<button class="mui-btn mui-btn-outlined button" style="">发布</button>
+							<button class="mui-btn mui-btn-outlined button" style="">删除</button>
+						</div>
+					</div>
+				</div>
+				<div class="mui-card mui-row card">
+					<div class="card_content">
+						<div style="text-indent: 26px;">CCO新零售之战</div>
+						<div class="line_style"></div>
+						<div style="text-indent: 26px;">火热进行中，距离结束</div>
+						<div style="text-indent: 26px;">02天08:22</div>
+					</div>
+					<div class="card_img">
+						<img src="../img/bg.jpg" class="act_img" />
+					</div>
+				</div>
+				<div class="mui-card mui-row card">
+					<div class="card_content">
+						<div style="text-indent: 26px;">CCO新零售之战</div>
+						<div class="line_style"></div>
+						<div style="text-indent: 26px;">火热进行中，距离结束</div>
+						<div style="text-indent: 26px;">02天08:22</div>
+					</div>
+					<div class="card_img">
+						<img src="../img/bg.jpg" class="act_img" />
+					</div>
+				</div>
+				<div class="mui-card mui-row card">
+					<div class="card_content">
+						<div style="text-indent: 26px;">CCO新零售之战</div>
+						<div class="line_style"></div>
+						<div style="text-indent: 26px;">火热进行中，距离结束</div>
+						<div style="text-indent: 26px;">02天08:22</div>
+					</div>
+					<div class="card_img">
+						<img src="../img/bg.jpg" class="act_img" />
+					</div>
+				</div>
+			</div>
+			<div id="item2" class="mui-active">
+				<div class="mui-card mui-row card">
+					<div class="card_content">
+						<div style="text-indent: 26px;">CCO新零售之战</div>
+						<div class="line_style"></div>
+						<div style="text-indent: 26px;">火热进行中，距离结束</div>
+						<div style="text-indent: 26px;">02天08:22</div>
+					</div>
+					<div class="card_img">
+						<img src="../img/title_1.png" class="act_img" />
+					</div>
+				</div>
+				<div class="mui-card mui-row card">
+					<div class="card_content">
+						<div style="text-align: center;">CCO新零售之战</div>
+						<div class="line_style"></div>
+						<div style="text-align: center;">活动已结束</div>
+					</div>
+					<div class="card_img">
+						<img src="../img/title_1.png" class="act_img" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+				var sliderSegmentedControl = document.getElementById('sliderSegmentedControl');
+				$('.mui-input-group').on('change', 'input', function() {
+					if(this.checked) {
+						sliderSegmentedControl.className = 'mui-slider-indicator mui-segmented-control mui-segmented-control-inverted mui-segmented-control-' + this.value;
+						//force repaint
+						sliderProgressBar.setAttribute('style', sliderProgressBar.getAttribute('style'));
+					}
+				});
+			})(mui);
+		</script>
+	</body>
+
+</html>
